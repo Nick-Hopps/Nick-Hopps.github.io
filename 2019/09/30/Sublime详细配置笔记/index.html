@@ -1,0 +1,828 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content=" 为什么要用 Sublime Text
+有人也许会有疑问，为什么不用 Dreamweaver、WebStrom、Visual Studio 这些大型 IDE？功能齐全又好用，为什么要用 Sublime Text 呢？">
+  <meta name="author" content="NickHopps">
+  <meta name="keywords" content="Math, Computer-Science, Algorithm, Efficiency, Front-End, Back-End">
+  
+  <title>Sublime详细配置笔记 - Nick&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"infiniture.cn","root":"/","version":"1.8.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Nick's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                主页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com/bg-small.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Sublime详细配置笔记">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-09-30 01:25" pubdate>
+        2019年9月30日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      50
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Sublime详细配置笔记</h1>
+            
+            <div class="markdown-body">
+              <h1 id="为什么要用-sublime-text"><a class="markdownIt-Anchor" href="#为什么要用-sublime-text"></a> 为什么要用 Sublime Text</h1>
+<p>有人也许会有疑问，为什么不用 Dreamweaver、WebStrom、Visual Studio 这些大型 IDE？功能齐全又好用，为什么要用 Sublime Text 呢？</p>
+<span id="more"></span>
+<p>首先，IDE 虽好，但是由于 IDE 们内置了大量的功能插件，导致软件启动速度特别慢，而 Sublime Text 是一款编辑器，类似于记事本，没有多余的加载项，因此启动速度很快。其次，IDE 的一大优点就是内置了许多强大的功能，但是平时学习工作中这些功能不一定用得到，因此造成了时间和资源的浪费，不适合平时较为小型、零散的开发，而 Sublime Text 有自己的插件管理工具（Package Control），可以通过各种各样的插件来扩展编辑器的功能，各种插件数量繁多，功能齐全，完全可以根据自己的需求自定义编辑器的功能，最大程度地提高效率。除此之外，Sublime Text 的扩展能力非常强大，包括插件、编译文件、快捷键、代码片段、主题配色等都可以完全自定义，只需要会用一点 Python 和正则表达式，通过一系列改装，Sublime Text 完全可以变成自己独一无二的个性化 IDE。与此同时，Sublime Text 是一款跨平台的编辑器，在 Window、IOS 和 Linux 下都可以使用。</p>
+<p><strong>总的来说，Sublime Text 是图形界面环境（GUI）下的最佳编辑器选择</strong> （Vim 是命令行环境（CLI）下的最佳选择，喜欢 Emacs 的童鞋请无视这句话）</p>
+<p>当然，类似的优秀的编辑器有很多，比如 Atom、Notepad++、VScode 等，我都试用过，不过体验下来，发现还是 Sublime Text 在各个方面的表现都更加出色。</p>
+<h1 id="配置-sublime-text"><a class="markdownIt-Anchor" href="#配置-sublime-text"></a> 配置 Sublime Text</h1>
+<h2 id="下载安装-sublime-text"><a class="markdownIt-Anchor" href="#下载安装-sublime-text"></a> 下载安装 Sublime Text</h2>
+<p><a target="_blank" rel="noopener" href="https://www.sublimetext.com/">Sublime Text 官网</a> 下载最新安装包，安装好之后先别打开程序，先在程序所在文件中新建一个 “Data” 文件夹，然后再打开程序。这样做的目的是为了让 Sublime Text 的配置直接保存在安装文件夹中，方便备份和使用，如果不这么做的话，在 Windows 平台下默认会把配置文件保存到 “C:\Users\XXX\AppData” 里面，不方便操作。</p>
+<p>Sublime Text 是一款收费软件，但是它是永久试用的。换句话说，如果你有闲钱的话，可以买一个 License 支持一下作者，售价是 $80。如果你没有钱或者不想花钱的话，你也可以直接用，没有任何问题，只是每隔一段时间会提示你正在使用未注册版本。如果觉得弹窗不是大问题的话，大可放心使用，不过如果是强迫症患者受不了弹窗，也没有问题，可以百度对应版本号的注册码，比如我现在使用的是 3176 版本，那么就可以直接使用这个注册码：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs txt">----- BEGIN LICENSE -----<br>sgbteam<br>Single User License<br>EA7E-1153259<br>8891CBB9 F1513E4F 1A3405C1 A865D53F<br>115F202E 7B91AB2D 0D2A40ED 352B269B<br>76E84F0B CD69BFC7 59F2DFEF E267328F<br>215652A3 E88F9D8F 4C38E3BA 5B2DAAE4<br>969624E7 DC9CD4D5 717FB40C 1B9738CF<br>20B3C4F1 E917B5B3 87C38D9C ACCE7DD8<br>5F7EF854 86B9743C FADC04AA FB0DA5C0<br>F913BE58 42FEA319 F954EFDD AE881E0B<br>------ END LICENSE ------<br></code></pre></td></tr></table></figure>
+<p>当然，如果经济上比较充裕的话，还是推荐购买一份支持作者的。</p>
+<h2 id="安装-package-control"><a class="markdownIt-Anchor" href="#安装-package-control"></a> 安装 Package Control</h2>
+<p>初始的 Sublime Text 其实就是一个比记事本好看点的编辑器，为了能够更自由地改造，还需要安装一个插件管理工具：Package Control。</p>
+<p>在 <a target="_blank" rel="noopener" href="https://packagecontrol.io/installation#st3">Package Control 官网</a> 上可以看到具体的安装方法：</p>
+<ol>
+<li>在 Sublime Text 中通过快捷键 <code>Ctrl+`</code> 打开控制台</li>
+<li>输入代码</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> urllib.request,os,hashlib; h = <span class="hljs-string">&#x27;6f4c264a24d933ce70df5dedcf1dcaee&#x27;</span> + <span class="hljs-string">&#x27;ebe013ee18cced0ef93d5f746d80ef60&#x27;</span>; pf = <span class="hljs-string">&#x27;Package Control.sublime-package&#x27;</span>; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( <span class="hljs-string">&#x27;http://packagecontrol.io/&#x27;</span> + pf.replace(<span class="hljs-string">&#x27; &#x27;</span>, <span class="hljs-string">&#x27;%20&#x27;</span>)).read(); dh = hashlib.sha256(by).hexdigest(); print(<span class="hljs-string">&#x27;Error validating download (got %s instead of %s), please try manual install&#x27;</span> % (dh, h)) <span class="hljs-keyword">if</span> dh != h <span class="hljs-keyword">else</span> <span class="hljs-built_in">open</span>(os.path.join( ipp, pf), <span class="hljs-string">&#x27;wb&#x27;</span> ).write(by)<br></code></pre></td></tr></table></figure>
+<p>即可完成安装。随后通过快捷键 <code>ctrl + shift + p</code> 打开命令面板，然后输入 “Package Control” 即可看到 Pacakage Control 的各种指令，也可以直接使用指令的首字母的简写调用：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">pcip</td>
+<td style="text-align:left">安装插件</td>
+</tr>
+<tr>
+<td style="text-align:left">pcrp</td>
+<td style="text-align:left">删除插件</td>
+</tr>
+<tr>
+<td style="text-align:left">pclp</td>
+<td style="text-align:left">列出已安装插件</td>
+</tr>
+</tbody>
+</table>
+<h2 id="安装常用插件"><a class="markdownIt-Anchor" href="#安装常用插件"></a> 安装常用插件</h2>
+<h3 id="核心插件"><a class="markdownIt-Anchor" href="#核心插件"></a> 核心插件</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Package Control</td>
+<td style="text-align:left">插件管理插件</td>
+</tr>
+<tr>
+<td style="text-align:left">PackageResourceViewer</td>
+<td style="text-align:left">插件资源管理</td>
+</tr>
+<tr>
+<td style="text-align:left">SideBarEnhancements</td>
+<td style="text-align:left">扩展侧边栏功能</td>
+</tr>
+<tr>
+<td style="text-align:left">AdvancedNewFile</td>
+<td style="text-align:left">快速新建文件</td>
+</tr>
+<tr>
+<td style="text-align:left">IMESupport</td>
+<td style="text-align:left">输入法跟随光标</td>
+</tr>
+<tr>
+<td style="text-align:left">FindKeyConflicts</td>
+<td style="text-align:left">检测快捷键冲突</td>
+</tr>
+<tr>
+<td style="text-align:left">Sublimerge 3</td>
+<td style="text-align:left">文件对比</td>
+</tr>
+<tr>
+<td style="text-align:left">Git</td>
+<td style="text-align:left">整合 Git 命令</td>
+</tr>
+<tr>
+<td style="text-align:left">Gitgutter</td>
+<td style="text-align:left">显示当前仓库状态</td>
+</tr>
+<tr>
+<td style="text-align:left">A File Icon</td>
+<td style="text-align:left">文件图标显示</td>
+</tr>
+</tbody>
+</table>
+<h3 id="功能插件"><a class="markdownIt-Anchor" href="#功能插件"></a> 功能插件</h3>
+<p><strong>前端工具</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Emmet</td>
+<td style="text-align:left">前端工具</td>
+</tr>
+<tr>
+<td style="text-align:left">PyV8</td>
+<td style="text-align:left">Emmet 所需插件，安装 Emmet 时自动安装</td>
+</tr>
+<tr>
+<td style="text-align:left">Gulp</td>
+<td style="text-align:left">整合 Gulp 命令</td>
+</tr>
+<tr>
+<td style="text-align:left">Better Completion</td>
+<td style="text-align:left">代码补全</td>
+</tr>
+<tr>
+<td style="text-align:left">CSS3</td>
+<td style="text-align:left">更完整地支持CSS3 和 PostCSS-cssnext</td>
+</tr>
+<tr>
+<td style="text-align:left">SASS</td>
+<td style="text-align:left">SASS 语法高亮和自动完成</td>
+</tr>
+<tr>
+<td style="text-align:left">Color Convert</td>
+<td style="text-align:left">颜色代码转换</td>
+</tr>
+<tr>
+<td style="text-align:left">ColorPicker</td>
+<td style="text-align:left">颜色选择器</td>
+</tr>
+<tr>
+<td style="text-align:left">Autoprefixer</td>
+<td style="text-align:left">添加 CSS 浏览器前缀</td>
+</tr>
+<tr>
+<td style="text-align:left">HTML-CSS-JS Prettify</td>
+<td style="text-align:left">HTML，CSS，JavaScript 和 JSON 代码格式化程序，需要 nodejs 支持</td>
+</tr>
+<tr>
+<td style="text-align:left">SublimeLinter</td>
+<td style="text-align:left">代码错误检测工具，需要使用 nodejs 的 npm 在本地安装相应的软件</td>
+</tr>
+<tr>
+<td style="text-align:left">SublimeLinter-jshint</td>
+<td style="text-align:left">JavaScript 错误检查工具，需要安装 jshint</td>
+</tr>
+<tr>
+<td style="text-align:left">SublimeLinter-csslint</td>
+<td style="text-align:left">CSS 错误检查工具，需要安装 csslint</td>
+</tr>
+</tbody>
+</table>
+<p><strong>综合工具</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Alignment</td>
+<td style="text-align:left">代码对齐</td>
+</tr>
+<tr>
+<td style="text-align:left">BracketHighlighter</td>
+<td style="text-align:left">匹配各种括号并高亮显示</td>
+</tr>
+<tr>
+<td style="text-align:left">File Header</td>
+<td style="text-align:left">文件标头模板生成</td>
+</tr>
+<tr>
+<td style="text-align:left">AutoFileName</td>
+<td style="text-align:left">在需要输入路径的地方显示路径下的文件内容</td>
+</tr>
+<tr>
+<td style="text-align:left">DocBlockr</td>
+<td style="text-align:left">辅助生成代码注释</td>
+</tr>
+<tr>
+<td style="text-align:left">PlainTasks</td>
+<td style="text-align:left">TO-DO List 插件</td>
+</tr>
+<tr>
+<td style="text-align:left">MarkdownEditing</td>
+<td style="text-align:left">Markdown 编辑器</td>
+</tr>
+<tr>
+<td style="text-align:left">MarkdownPreview</td>
+<td style="text-align:left">Markdown 预览以及导出</td>
+</tr>
+<tr>
+<td style="text-align:left">LaTeXTools</td>
+<td style="text-align:left">LaTeX 编辑器</td>
+</tr>
+<tr>
+<td style="text-align:left">LaTeX-cwl</td>
+<td style="text-align:left">LaTeX 自动完成</td>
+</tr>
+</tbody>
+</table>
+<p><em>注意</em></p>
+<ul>
+<li>使用 LaTeXTools 需要自己安装 MikTex 以及 SumatraPDF，并且在配置文件里面修改路径，其中 SumatraPDF 需要把安装路径加入 PATH。同时为了实现内容回溯，需要用到命令：</li>
+</ul>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">sumatrapdf.exe -inverse-search &quot;\&quot;C:\Program Files\Sublime Text 3\sublime_text.exe\&quot; \&quot;%f:%l\&quot;&quot;<br></code></pre></td></tr></table></figure>
+<h2 id="安装主题配色"><a class="markdownIt-Anchor" href="#安装主题配色"></a> 安装主题配色</h2>
+<p>个人觉得比较好看的主题有两个：</p>
+<ul>
+<li>Theme - Gravity</li>
+<li>DA UI</li>
+</ul>
+<p>都可以通过 Package Control 直接搜索安装，上图中我就是混合使用 DA UI 的主题和 Theme - Gravity 的配色。更多的主题和配色可以在 Package Control 的官网上找到。</p>
+<h2 id="自定义设置"><a class="markdownIt-Anchor" href="#自定义设置"></a> 自定义设置</h2>
+<p>Sublime Text 的设置在 “Preferences -&gt; Settings” 中，打开之后左边是每个设置项的具体描述，右边就可以编辑自己的设置了。下面给出的是我使用的设置：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>	<span class="hljs-comment">// Theme</span><br>	<span class="hljs-attr">&quot;theme&quot;</span>: <span class="hljs-string">&quot;DA.sublime-theme&quot;</span>,                                         <span class="hljs-comment">// DA UI 主题</span><br>	<span class="hljs-attr">&quot;color_scheme&quot;</span>: <span class="hljs-string">&quot;Packages/Theme - Gravity/Monokai Gravity.tmTheme&quot;</span>,  <span class="hljs-comment">// Gravity 的配色</span><br><br>	<span class="hljs-comment">// Font</span><br>	<span class="hljs-attr">&quot;font_size&quot;</span>: <span class="hljs-number">16</span>,                 <span class="hljs-comment">// 设置字体大小</span><br>	<span class="hljs-attr">&quot;font_face&quot;</span>: <span class="hljs-string">&quot;Source Code Pro&quot;</span>,  <span class="hljs-comment">// 设置字体，如果没有安装 Source Code Pro 的话推荐使用 Consolas</span><br>	<span class="hljs-attr">&quot;font_options&quot;</span>: [<span class="hljs-string">&quot;gdi&quot;</span>],         <span class="hljs-comment">// 字体选项，使用 &quot;gdi&quot; 的方式渲染字体，如果没有这个选项，在最新版的 Sublime 中的中文显示会出问题</span><br><br>	<span class="hljs-comment">// Edit</span><br>	<span class="hljs-attr">&quot;tab_size&quot;</span>: <span class="hljs-number">2</span>,                              <span class="hljs-comment">// tab 一下缩进2个单位</span><br>	<span class="hljs-attr">&quot;translate_tabs_to_spaces&quot;</span>: <span class="hljs-literal">true</span>,           <span class="hljs-comment">// 将 tab 转成空格</span><br>	<span class="hljs-attr">&quot;trim_trailing_white_space_on_save&quot;</span>: <span class="hljs-literal">true</span>,  <span class="hljs-comment">// 保存文件时将行尾的空白都去掉</span><br>	<span class="hljs-attr">&quot;ensure_newline_at_eof_on_save&quot;</span>: <span class="hljs-literal">true</span>,      <span class="hljs-comment">// 保存文件时确保文件最后一行是空行</span><br><br>	<span class="hljs-comment">// View</span><br>	<span class="hljs-attr">&quot;show_encoding&quot;</span>: <span class="hljs-literal">true</span>,   <span class="hljs-comment">// 界面右下角显示当前的文件编码</span><br>	<span class="hljs-attr">&quot;highlight_line&quot;</span>: <span class="hljs-literal">true</span>,  <span class="hljs-comment">// 将光标所在行高亮</span><br><br>	<span class="hljs-comment">// Auto Complete</span><br>	<span class="hljs-attr">&quot;auto_complete_commit_on_tab&quot;</span>: <span class="hljs-literal">true</span>,  <span class="hljs-comment">// 使用 tab 自动补全</span><br>	<span class="hljs-attr">&quot;auto_complete_cycle&quot;</span>: <span class="hljs-literal">true</span>,          <span class="hljs-comment">// 在自动补全的弹窗中可以循环选择项目</span><br>	<span class="hljs-attr">&quot;auto_complete_triggers&quot;</span>:             <span class="hljs-comment">// 设置具体的自动完成触发规则</span><br>	[<br>		&#123;<br>			<span class="hljs-attr">&quot;characters&quot;</span>: <span class="hljs-string">&quot;&lt;&quot;</span>,<br>			<span class="hljs-attr">&quot;selector&quot;</span>: <span class="hljs-string">&quot;text.html&quot;</span><br>		&#125;,<br>		&#123;<br>			<span class="hljs-attr">&quot;characters&quot;</span>: <span class="hljs-string">&quot;\\&quot;</span>,<br>			<span class="hljs-attr">&quot;selector&quot;</span>: <span class="hljs-string">&quot;text.tex.latex&quot;</span><br>		&#125;<br>	],<br><br>	<span class="hljs-comment">// Match（此处是为了配合 BracketHighlighter 插件而做的更改）</span><br>	<span class="hljs-attr">&quot;match_brackets&quot;</span>: <span class="hljs-literal">false</span>,<br>	<span class="hljs-attr">&quot;match_brackets_angle&quot;</span>: <span class="hljs-literal">false</span>,<br>	<span class="hljs-attr">&quot;match_brackets_braces&quot;</span>: <span class="hljs-literal">false</span>,<br>	<span class="hljs-attr">&quot;match_brackets_content&quot;</span>: <span class="hljs-literal">false</span>,<br>	<span class="hljs-attr">&quot;match_brackets_square&quot;</span>: <span class="hljs-literal">false</span>,<br>	<span class="hljs-attr">&quot;match_tags&quot;</span>: <span class="hljs-literal">false</span>,<br><br>	<span class="hljs-comment">// Package Ignorance</span><br>	<span class="hljs-attr">&quot;ignored_packages&quot;</span>: [<span class="hljs-string">&quot;Vintage&quot;</span>]  <span class="hljs-comment">// 忽略插件</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="使用-sublime-text"><a class="markdownIt-Anchor" href="#使用-sublime-text"></a> 使用 Sublime Text</h1>
+<h2 id="使用技巧"><a class="markdownIt-Anchor" href="#使用技巧"></a> 使用技巧</h2>
+<h3 id="编译系统"><a class="markdownIt-Anchor" href="#编译系统"></a> 编译系统</h3>
+<p>Sublime Text 自带多语言的编译选项，位于 “Tools -&gt; Build System” 中，不过 Sublime Text 本身不带有任何编译器，需要提前安装好所需编译器并添加到系统的 PATH 中，现在以 C++ 为例，写一个编译文件，提供额外的编译选项。编译文件以 “.sublime-build” 结尾，保存在 “Data/Packages/User” 下（通过 “Preferences -&gt; Browser Packages” 访问），可以自己新建文件也可以通过 “Tools -&gt; Build System -&gt; New Build System” 新建编译文件。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>	<span class="hljs-attr">&quot;encoding&quot;</span>: <span class="hljs-string">&quot;utf-8&quot;</span>,<br>	<span class="hljs-attr">&quot;shell_cmd&quot;</span>: <span class="hljs-string">&quot;g++ -Wall -std=c++11 \&quot;$file_name\&quot; -o \&quot;$file_base_name\&quot;&quot;</span>,<br>	<span class="hljs-attr">&quot;file_regex&quot;</span>: <span class="hljs-string">&quot;^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$&quot;</span>,<br>	<span class="hljs-attr">&quot;working_dir&quot;</span>: <span class="hljs-string">&quot;$file_path&quot;</span>,<br>	<span class="hljs-attr">&quot;selector&quot;</span>: <span class="hljs-string">&quot;source.c++, source.c&quot;</span>,<br>	<span class="hljs-attr">&quot;variants&quot;</span>:<br>	[<br>		&#123;<br>			<span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;Display in Sublime&quot;</span>,<br>	        <span class="hljs-attr">&quot;shell_cmd&quot;</span>: <span class="hljs-string">&quot;g++ -Wall -std=c++11 \&quot;$file_name\&quot; -o \&quot;$file_base_name\&quot; &amp;&amp; cmd /c \&quot;$&#123;file_path&#125;/$&#123;file_base_name&#125;\&quot;&quot;</span><br>		&#125;,<br>		&#123;<br>			<span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;Display in CMD&quot;</span>,<br>	        <span class="hljs-attr">&quot;shell_cmd&quot;</span>: <span class="hljs-string">&quot;g++ -Wall -std=c++11 \&quot;$file\&quot; -o \&quot;$file_base_name\&quot; &amp;&amp; start cmd /c \&quot;\&quot;$&#123;file_path&#125;/$&#123;file_base_name&#125;\&quot; &amp; pause\&quot;&quot;</span><br>		&#125;,<br>		&#123;<br>			<span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;Buld with Makefile&quot;</span>,<br>	        <span class="hljs-attr">&quot;shell_cmd&quot;</span>: <span class="hljs-string">&quot;make &amp;&amp; start cmd /c \&quot;\&quot;$&#123;file_path&#125;/$&#123;file_base_name&#125;\&quot; &amp; pause\&quot;&quot;</span><br>		&#125;,<br>		&#123;<br>			<span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;Debug in GDB&quot;</span>,<br>	        <span class="hljs-attr">&quot;shell_cmd&quot;</span>: <span class="hljs-string">&quot;g++ -g -std=c++11 \&quot;$file\&quot; -o \&quot;$file_base_name\&quot; &amp;&amp; start cmd /c gdb $&#123;file_path&#125;/$&#123;file_base_name&#125; &amp; pause&quot;</span><br>		&#125;<br>	]<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>各个参数的含义和使用方法参照这篇博客：<a target="_blank" rel="noopener" href="http://www.yalewoo.com/sublime_text_3_gcc.html">http://www.yalewoo.com/sublime_text_3_gcc.html</a></p>
+<h3 id="代码片段"><a class="markdownIt-Anchor" href="#代码片段"></a> 代码片段</h3>
+<p>Sublime Text 自带了许多语言的常见代码片段，然而在某些情况下，自带的代码片段不能满足自己的需求，比如结构不符合，参数不符合等等，这时可以利用自定义的代码片段来解决问题。可以自己新建代码片段保存为 “.sublime-snippet”  文件，也可以通过 “Tools -&gt; Developer -&gt; New Snippet” 新建代码片段，自定义代码片段也保存在 “Data/Packages/User” 文件夹下。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">snippet</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">description</span>&gt;</span>Custom if<span class="hljs-tag">&lt;/<span class="hljs-name">description</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">content</span>&gt;</span><br>    &lt;![CDATA[if ($&#123;1:/* condition */&#125;) &#123;<br>      $&#123;2:/* codes */&#125;<br>    &#125;]]&gt;<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">content</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">tabTrigger</span>&gt;</span>if<span class="hljs-tag">&lt;/<span class="hljs-name">tabTrigger</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>source.c, source.objc, source.c++, source.objc++<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">snippet</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>这其中：</p>
+<ul>
+<li><code>&lt;description&gt;</code>：触发自动完成时，待选项右边显示的描述。</li>
+<li><code>&lt;content&gt;</code>：代码片段内容，包含在<code>&lt;![CDATA[]]&gt;</code>中。类似 “${1:xxx}” 的结构的作用是在显示片段后，光标所在的位置，通过 tab 键切换，顺序就是里面的数字大小，唯一不同的是 “$0”，它代表代码片段结束的位置。</li>
+<li><code>&lt;tabTrigger&gt;</code>：触发代码片段的关键词。</li>
+<li><code>&lt;scope&gt;</code>：代码片段的适用范围</li>
+</ul>
+<h3 id="快捷键"><a class="markdownIt-Anchor" href="#快捷键"></a> 快捷键</h3>
+<p>Sublime Text 自带了各种各样的快捷键，有关快捷键的具体使用说明在下一部分，这里主要的目的是解决快捷键的一个常见问题。这个问题就是发生按键冲突，发生冲突的原因有很多种：要么是由于不同的插件有自己的快捷键，但是键盘上的按键就那么多，因此很多插件会由于快捷键冲突而无法使用；要么某些系统或软件的快捷键和 Sublime Text 的快捷键起冲突。无论是哪种，都有可能需要自己修改默认的快捷键，除此之外，有时候某些快捷键不符合自己的习惯，这时也需要修改默认的快捷键。快捷键在 “Preferences -&gt; Key Bindings” 进行设置，接下来以处理按键冲突为例，展示如何修改快捷键：</p>
+<p>首先利用之前安装的 “FindKeyConflicts” 插件检查具体发生冲突的有哪些按键：</p>
+<p><code>ctrl + shift + p</code> 打开命令栏，然后输入 “fkc”，在下方选择 “FindKeyConflicts：All Conflicts”，然后稍等片刻就会显示。现在随便取一个按键为例子：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs txt">[ctrl+s]<br>   save             Default<br>   sublimerge_save  Sublimerge 3  [&#123;&quot;key&quot;: &quot;setting.is_sublimerge_view&quot;, &quot;operator&quot;: &quot;equal&quot;, &quot;operand&quot;: true, &quot;match_all&quot;: true&#125;]<br></code></pre></td></tr></table></figure>
+<p>在这个例子中，<code>ctrl + s</code> 这个按键有两个行为，一个是默认的保存功能，一个是插件 “Sublimerge 3” 提供的 “sublimerge_save” 功能。尽管实际上，由于插件的按键设置中的 “Context（解决按键冲突的额外方法）” 部分的设置，并不会发生冲突，但这里假设它发生冲突，需要把它改为其他按键。</p>
+<p>首先在对应插件的设置中，这里以 Sublimerge 为例的话就是：“Preferences -&gt; Package Settings -&gt; Sublimerge” 找到 “Key Bindings - User”，点击打开后即可输入自己的快捷键设置：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123; <span class="hljs-attr">&quot;keys&quot;</span>: [<span class="hljs-string">&quot;ctrl+s&quot;</span>,<span class="hljs-string">&quot;ctrl+c&quot;</span>], <span class="hljs-attr">&quot;command&quot;</span>: <span class="hljs-string">&quot;sublimerge_save&quot;</span>, <span class="hljs-attr">&quot;context&quot;</span>: [<br>    &#123;<span class="hljs-attr">&quot;key&quot;</span>: <span class="hljs-string">&quot;setting.is_sublimerge_view&quot;</span>, <span class="hljs-attr">&quot;operator&quot;</span>: <span class="hljs-string">&quot;equal&quot;</span>, <span class="hljs-attr">&quot;operand&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">&quot;match_all&quot;</span>: <span class="hljs-literal">true</span>&#125;<br>]&#125;<br></code></pre></td></tr></table></figure>
+<p>这其中：</p>
+<ul>
+<li>“keys”：具体的按键，这里的 “[“ctrl+s”,“ctrl+c”]” 代表多个按键，即按住 “ctrl” 键然后顺序按下 “s” 和 “c”。</li>
+<li>“command”：执行的命令，这里的命令一般是插件提供的。</li>
+<li>“context”：上下文，可以在这里指定快捷键生效的具体条件。</li>
+</ul>
+<h2 id="常用快捷键"><a class="markdownIt-Anchor" href="#常用快捷键"></a> 常用快捷键</h2>
+<h3 id="通用general"><a class="markdownIt-Anchor" href="#通用general"></a> 通用（General）</h3>
+<ul>
+<li><code>↑↓←→</code>：上下左右移动光标</li>
+<li><code>Alt</code>：调出菜单</li>
+<li><code>Ctrl + Shift + P</code>：调出命令板（Command Palette）</li>
+<li><code>Ctrl + `</code> ：调出控制台</li>
+</ul>
+<h3 id="编辑editing"><a class="markdownIt-Anchor" href="#编辑editing"></a> 编辑（Editing）</h3>
+<ul>
+<li><code>Ctrl + Enter</code>：在当前行下面新增一行然后跳至该行</li>
+<li><code>Ctrl + Shift + Enter</code>：在当前行上面增加一行并跳至该行</li>
+<li><code>Ctrl + ←/→</code>：进行逐词移动</li>
+<li><code>Ctrl + Shift + ←/→</code>进行逐词选择</li>
+<li><code>Ctrl + ↑/↓</code>移动当前显示区域</li>
+<li><code>Ctrl + Shift + ↑/↓</code>移动当前行</li>
+</ul>
+<h3 id="选择selecting"><a class="markdownIt-Anchor" href="#选择selecting"></a> 选择（Selecting）</h3>
+<ul>
+<li><code>Ctrl + D</code>：选择当前光标所在的词并高亮该词所有出现的位置，再次 <code>Ctrl + D</code> 选择该词出现的下一个位置，在多重选词的过程中，使用 <code>Ctrl + K</code> 进行跳过，使用 <code>Ctrl + U</code> 进行回退，使用 <code>Esc</code> 退出多重编辑</li>
+<li><code>Ctrl + Shift + L</code>：将当前选中区域打散</li>
+<li><code>Ctrl + J</code>：把当前选中区域合并为一行</li>
+<li><code>Ctrl + M</code>：在起始括号和结尾括号间切换</li>
+<li><code>Ctrl + Shift + M</code>：快速选择括号间的内容</li>
+<li><code>Ctrl + Shift + J</code>：快速选择同缩进的内容</li>
+<li><code>Ctrl + Shift + Space</code>：快速选择当前作用域（Scope）的内容</li>
+</ul>
+<h3 id="查找替换findingreplacing"><a class="markdownIt-Anchor" href="#查找替换findingreplacing"></a> 查找&amp;替换（Finding&amp;Replacing）</h3>
+<ul>
+<li><code>F3</code>：跳至当前关键字下一个位置</li>
+<li><code>Shift + F3</code>：跳到当前关键字上一个位置</li>
+<li><code>Alt + F3</code>：选中当前关键字出现的所有位置</li>
+<li><code>Ctrl + F/H</code>：进行标准查找/替换，之后：
+<ul>
+<li><code>Alt + C</code>：切换大小写敏感（Case-sensitive）模式</li>
+<li><code>Alt + W</code>：切换整字匹配（Whole matching）模式</li>
+<li><code>Alt + R</code>：切换正则匹配（Regex matching）模式</li>
+<li><code>Ctrl + Shift + H</code>：替换当前关键字</li>
+<li><code>Ctrl + Alt + Enter</code>：替换所有关键字匹配</li>
+</ul>
+</li>
+<li><code>Ctrl + Shift + F</code>：多文件搜索&amp;替换</li>
+</ul>
+<h3 id="跳转jumping"><a class="markdownIt-Anchor" href="#跳转jumping"></a> 跳转（Jumping）</h3>
+<ul>
+<li><code>Ctrl + P</code>：跳转到指定文件，输入文件名后可以：
+<ul>
+<li><code>@</code> 符号跳转：输入 <code>@symbol</code> 跳转到 <code>symbol</code> 符号所在的位置</li>
+<li><code>#</code> 关键字跳转：输入 <code>#keyword</code> 跳转到 <code>keyword</code> 所在的位置</li>
+<li><code>:</code> 行号跳转：输入 <code>:12</code> 跳转到文件的第12行。</li>
+</ul>
+</li>
+<li><code>Ctrl + R</code>：跳转到指定符号</li>
+<li><code>Ctrl + G</code>：跳转到指定行号</li>
+</ul>
+<h3 id="窗口window"><a class="markdownIt-Anchor" href="#窗口window"></a> 窗口（Window）</h3>
+<ul>
+<li><code>Ctrl + Shift + N</code>：创建一个新窗口</li>
+<li><code>Ctrl + N</code>：在当前窗口创建一个新标签</li>
+<li><code>Ctrl + W</code>：关闭当前标签，当窗口内没有标签时会关闭该窗口</li>
+<li><code>Ctrl + Shift + T</code>：恢复刚刚关闭的标签</li>
+</ul>
+<h4 id="屏幕screen"><a class="markdownIt-Anchor" href="#屏幕screen"></a> 屏幕（Screen）</h4>
+<ul>
+<li><code>F11</code>：切换普通全屏</li>
+<li><code>Shift + F11</code>：切换无干扰全屏</li>
+<li><code>Alt + Shift + 2</code>：进行左右分屏</li>
+<li><code>Alt + Shift + 8</code>：进行上下分屏</li>
+<li><code>Alt + Shift + 5</code>：进行上下左右分屏</li>
+<li>分屏之后，使用 <code>Ctrl + 数字键</code> 跳转到指定屏，使用 <code>Ctrl + Shift + 数字键</code> 将当前屏移动到指定屏</li>
+</ul>
+<h1 id="参考链接"><a class="markdownIt-Anchor" href="#参考链接"></a> 参考链接</h1>
+<p>官方文档：<a target="_blank" rel="noopener" href="http://www.sublimetext.com/docs/3/">http://www.sublimetext.com/docs/3/</a><br />
+官方论坛：<a target="_blank" rel="noopener" href="http://www.sublimetext.com/forum/">http://www.sublimetext.com/forum/</a><br />
+非官方文档（推荐）：<a target="_blank" rel="noopener" href="http://sublime-text-unofficial-documentation.readthedocs.org/">http://sublime-text-unofficial-documentation.readthedocs.org/</a><br />
+Sublime Text 全程指南：<a target="_blank" rel="noopener" href="http://lucida.me/blog/sublime-text-complete-guide/">http://lucida.me/blog/sublime-text-complete-guide/</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%88%E7%8E%87/">效率</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8/">编辑器</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/09/30/JavaScript%E5%B8%B8%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JavaScript 常用设计模式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/09/30/%E4%BD%BF%E7%94%A8Gulp&amp;Webpack%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AF%E8%84%9A%E6%89%8B%E6%9E%B6/">
+                        <span class="hidden-mobile">使用Gulp&Webpack构建前端脚手架</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.lazyComments('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "3thvlRFEaPVQpJJtlrogRwP8-gzGzoHsz",
+          app_key: "QueqTwpRD1mNqEskFmbaAdx1",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

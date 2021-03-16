@@ -1,0 +1,597 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="A blog of NickHopps">
+  <meta name="author" content="NickHopps">
+  <meta name="keywords" content="Math, Computer-Science, Algorithm, Efficiency, Front-End, Back-End">
+  
+  <title>LEMP环境下WordPress建站教程 - Nick&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"infiniture.cn","root":"/","version":"1.8.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Nick's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                主页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com/bg-small.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="LEMP环境下WordPress建站教程">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2019-09-30 01:20" pubdate>
+        2019年9月30日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      29
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">LEMP环境下WordPress建站教程</h1>
+            
+            <div class="markdown-body">
+              <p>LEMP代表的是（L：Linux OS，E：Nginx，M：MySQL/MariaDB, P：PHP)，与之对应的是LAMP（唯一不同的是A，代表Apache网络服务器），由于Nginx轻量、高效的特性，LEMP在近来的WEB服务中的出镜率越来越高。为了追随潮流，在之前LAMP搭建Wordpress的基础上，我又尝试了使用Nginx作为Wordpress的网络服务器，尽管遇到了各种各样的问题，但是取得了不错的效果。由于Nginx的配置十分复杂，于是有很多需要注意的地方。</p>
+<h1 id="常见网络服务器的优缺点"><a class="markdownIt-Anchor" href="#常见网络服务器的优缺点"></a> 常见网络服务器的优缺点</h1>
+<h2 id="1-nginx"><a class="markdownIt-Anchor" href="#1-nginx"></a> 1. Nginx</h2>
+<p>Nginx是十分轻量级的HTTP服务器，是一个高性能的HTTP和反向代理服务器，Nginx以事件驱动的方式编写，所以有非常好的性能，同时也是一个非常高效的反向代理、负载平衡。其拥有匹配Lighttpd的性能，同时还没有Lighttpd的内存泄漏问题。</p>
+<ul>
+<li>
+<p>优点</p>
+<ul>
+<li>轻量级，处理请求异步非阻塞，抗并发，高度模块化，有着Lighttpd的性能，且更稳定。</li>
+</ul>
+</li>
+<li>
+<p>缺点</p>
+<ul>
+<li>Nginx在处理动态请求方面不如Apache。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-apache"><a class="markdownIt-Anchor" href="#2-apache"></a> 2. Apache</h2>
+<p>Apache是世界使用排名第一的Web服务器软件。它可以运行在几乎所有广泛使用的计算机平台上，由于其跨平台和安全性被广泛使用，是最流行的Web服务器端软件之一。但是对于那些需要更强大的Web应用服务器（比如大小、可定制、响应速度、可扩展性等方面）的人而言，Apache明显不符合他们的要求。</p>
+<ul>
+<li>
+<p>优点</p>
+<ul>
+<li>兼容性和稳定性强，处理动态请求能力好。</li>
+</ul>
+</li>
+<li>
+<p>缺点</p>
+<ul>
+<li>体量大，在速度、性能不及其他轻量级WEB服务器，并且消费内存较高。</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-lighttpd"><a class="markdownIt-Anchor" href="#3-lighttpd"></a> 3. Lighttpd</h2>
+<p>Lighttpd是一个具有非常低的内存开销，cpu占用率低，效能好，以及丰富的模块等特点。lighttpd是众多OpenSource轻量级的web server中较为优秀的一个。支持FastCGI, CGI, Auth, 输出压缩(output compress), URL重写, Alias等重要功能。</p>
+<ul>
+<li>
+<p>优点</p>
+<ul>
+<li>轻量级，CPU占用低，效能好，模块丰富，对fastcgi支持非常好，比Apache性能更高。</li>
+</ul>
+</li>
+<li>
+<p>缺点</p>
+<ul>
+<li>稳定性没有Apache和Nginx好。</li>
+</ul>
+</li>
+</ul>
+<p>如果考虑网站的综合状况的话，比较理想的做法是Nginx做高并发、缓存、代理前端内容，而使用Apache处理后台动态内容。不过如果只是驱动Wordpress，单独使用Nginx就够了。</p>
+<h1 id="安装lemp"><a class="markdownIt-Anchor" href="#安装lemp"></a> 安装LEMP</h1>
+<p>安装过程和LAMP差不多，只是几个地方稍微不同。</p>
+<h2 id="安装nginx"><a class="markdownIt-Anchor" href="#安装nginx"></a> 安装Nginx</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 安装Nginx</span><br>sudo apt install nginx<br><br><span class="hljs-comment"># 检查Nginx运行状况</span><br>sudo systemctl status nginx.service<br></code></pre></td></tr></table></figure>
+<h2 id="安装php7"><a class="markdownIt-Anchor" href="#安装php7"></a> 安装PHP7</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 安装PHP7和PHPFastCGI管理器PHP-FPM</span><br>sudo apt install php7.0 php7.0-fpm<br></code></pre></td></tr></table></figure>
+<h2 id="安装mariadb数据库"><a class="markdownIt-Anchor" href="#安装mariadb数据库"></a> 安装MariaDB数据库</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 安装MariaDB</span><br>sudo apt install mariadb-server mariadb-client php7.0-mysql<br><br><span class="hljs-comment"># 重启PHP-FPM服务以便使用MySQL模块与数据库通信</span><br>sudo systemctl restart php7.0-fpm.service<br></code></pre></td></tr></table></figure>
+<p>为了安全加固MariaDB，运行来自Ubuntu软件仓库中的二进制包提供的安全脚本，这会询问你设置一个root密码，移除匿名用户，禁用root用户远程登录，移除测试数据库等。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 使用安全脚本</span><br>sudo mysql_secure_installation<br><br><span class="hljs-comment"># 配置MariaDB以便普通用户能够不使用root权限来访问数据库</span><br>sudo mysql<br>MariaDB&gt; use mysql;<br>MariaDB&gt; update user <span class="hljs-built_in">set</span> plugin=<span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-built_in">where</span> User=<span class="hljs-string">&#x27;root&#x27;</span>;<br>MariaDB&gt; flush privileges;<br>MariaDB&gt; <span class="hljs-built_in">exit</span><br><br><span class="hljs-comment"># 然后使用如下命令执行数据库命令</span><br>mysql -u root -p -e <span class="hljs-string">&#x27;show databases&#x27;</span><br></code></pre></td></tr></table></figure>
+<h2 id="安装其他模块"><a class="markdownIt-Anchor" href="#安装其他模块"></a> 安装其他模块</h2>
+<p>还有一些Wordpress会用到的模块，比如phpmyadmin和xmlrpc，安装完后需要重启PHP-FPM。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 其他模块</span><br>sudo apt install php7.0-mcrypt php7.0-mbstring php7.0-xml php7.0-xmrpc<br></code></pre></td></tr></table></figure>
+<p>到这里LEMP的安装工作就已经基本搞定了，接下来是最重要的配置环节。</p>
+<h1 id="配置nginx"><a class="markdownIt-Anchor" href="#配置nginx"></a> 配置Nginx</h1>
+<h2 id="主配置"><a class="markdownIt-Anchor" href="#主配置"></a> 主配置</h2>
+<p>首先是主配置文件<code>/etc/nginx/nginx.conf</code></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-comment"># Set user and group.</span><br><span class="hljs-attribute">user</span> www-data www-data;<br><br><span class="hljs-comment"># Usually equal to number of CPUs you have.</span><br><span class="hljs-attribute">worker_processes</span> <span class="hljs-number">1</span>;<br><br><span class="hljs-comment"># Global error log [ debug | info | notice | warn | error | crit ].</span><br><span class="hljs-attribute">error_log</span> /var/log/nginx/error.log <span class="hljs-literal">warn</span>;<br><br><span class="hljs-comment"># Pid file</span><br><span class="hljs-attribute">pid</span> /run/nginx.pid;<br><br><span class="hljs-section">events</span> &#123;<br>	<span class="hljs-attribute">worker_connections</span> <span class="hljs-number">1024</span>;<br>&#125;<br><br><span class="hljs-section">http</span> &#123;<br>	<span class="hljs-comment">### Basic Settings ###</span><br><br>	<span class="hljs-attribute">include</span> /etc/nginx/mime.types;<br>	<span class="hljs-attribute">default_type</span> application/octet-stream;<br>	<span class="hljs-attribute">sendfile</span> <span class="hljs-literal">on</span>;<br>	<span class="hljs-attribute">tcp_nopush</span> <span class="hljs-literal">on</span>;<br>	<span class="hljs-attribute">tcp_nodelay</span> <span class="hljs-literal">on</span>;<br>	<span class="hljs-attribute">keepalive_timeout</span> <span class="hljs-number">60</span>;<br>	<span class="hljs-attribute">client_max_body_size</span> <span class="hljs-number">15m</span>; <span class="hljs-comment"># Limit the max size of plugin in Wordpress.</span><br><br>	<span class="hljs-comment">### SSL Settings ###</span><br><br>	<span class="hljs-attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="hljs-number">1</span> TLSv1.<span class="hljs-number">2</span>; <span class="hljs-comment"># Dropping SSLv3, ref: POODLE</span><br>	<span class="hljs-attribute">ssl_prefer_server_ciphers</span> <span class="hljs-literal">on</span>;<br><br>	<span class="hljs-comment">### Logging Settings ###</span><br><br>	<span class="hljs-attribute">access_log</span> /var/log/nginx/access.log;<br>	<span class="hljs-attribute">error_log</span> /var/log/nginx/error.log;<br><br>	<span class="hljs-comment">### Gzip Settings ###</span><br><br>	<span class="hljs-attribute">gzip</span> <span class="hljs-literal">on</span>;<br>	<span class="hljs-attribute">gzip_disable</span> <span class="hljs-string">&quot;msie6&quot;</span>;<br>	<span class="hljs-attribute">gzip_vary</span> <span class="hljs-literal">on</span>;<br>	<span class="hljs-attribute">gzip_proxied</span> any;<br>	<span class="hljs-attribute">gzip_comp_level</span> <span class="hljs-number">6</span>;<br>	<span class="hljs-attribute">gzip_buffers</span> <span class="hljs-number">16</span> <span class="hljs-number">8k</span>;<br>	<span class="hljs-attribute">gzip_http_version</span> <span class="hljs-number">1</span>.<span class="hljs-number">1</span>;<br>	<span class="hljs-attribute">gzip_types</span> text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;<br><br>	<span class="hljs-comment">### FastCGI Settings ###</span><br><br>	<span class="hljs-attribute">fastcgi_cache_path</span> /tmp/wpcache levels=<span class="hljs-number">1</span>:<span class="hljs-number">2</span> keys_zone=WORDPRESS:<span class="hljs-number">250m</span> inactive=<span class="hljs-number">1d</span> max_size=<span class="hljs-number">1G</span>;<br>	<span class="hljs-attribute">fastcgi_temp_path</span> /tmp/wpcache/temp;<br>	<span class="hljs-attribute">fastcgi_cache_key</span> <span class="hljs-string">&quot;$scheme$request_method$host$request_uri&quot;</span>;<br>	<span class="hljs-attribute">fastcgi_cache_use_stale</span> <span class="hljs-literal">error</span> timeout invalid_header http_500;<br>	<span class="hljs-attribute">fastcgi_ignore_headers</span> Cache-Control Expires Set-Cookie;<br><br>	<span class="hljs-comment">### Virtual Host Configs ###</span><br><br>	<span class="hljs-attribute">include</span> /etc/nginx/conf.d/<span class="hljs-regexp">*.conf</span>;<br>	<span class="hljs-attribute">include</span> /etc/nginx/sites-enabled/*;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h2 id="子配置"><a class="markdownIt-Anchor" href="#子配置"></a> 子配置</h2>
+<p>然后是Wordpress的配置文件<code>etc/site-enabled/wordpress.conf</code></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">server</span> &#123;<br>	<span class="hljs-attribute">listen</span> <span class="hljs-number">80</span> default_server;<br>	<span class="hljs-attribute">listen</span> [::]:<span class="hljs-number">80</span> default_server;<br><br>	<span class="hljs-attribute">root</span> /home/ubuntu/wordpress;<br><br>	<span class="hljs-attribute">index</span> index.html index.php;<br><br>	<span class="hljs-attribute">server_name</span> localhost;<br><br>	<span class="hljs-attribute">access_log</span> /var/log/nginx/infiniture.com.access.log;<br>	<span class="hljs-attribute">error_log</span> /var/log/nginx/infiniture.com.<span class="hljs-literal">error</span>.log;<br><br>	<span class="hljs-comment"># Managed by Certbot</span><br>	<span class="hljs-attribute">listen</span> <span class="hljs-number">443</span> ssl;<br>	<span class="hljs-attribute">ssl_certificate</span> /etc/letsencrypt/live/localhost/fullchain.pem;<br>	<span class="hljs-attribute">ssl_certificate_key</span> /etc/letsencrypt/live/localhost/privkey.pem;<br>	<span class="hljs-attribute">include</span> /etc/letsencrypt/options-ssl-nginx.conf;<br>	<span class="hljs-attribute">ssl_dhparam</span> /etc/letsencrypt/ssl-dhparams.pem;<br><br>	<span class="hljs-attribute">if</span> ($scheme != <span class="hljs-string">&quot;https&quot;</span>) &#123;<br>		<span class="hljs-attribute">return</span> <span class="hljs-number">301</span> https://$host$request_uri;<br>	&#125;<br><br>	<span class="hljs-comment"># Add rewrite support for wordpress</span><br>	<span class="hljs-attribute">location</span> / &#123;<br>		<span class="hljs-attribute">try_files</span> $uri $uri/ /index.php?$args;<br>		<span class="hljs-attribute">rewrite</span> /wp-admin$ $scheme://$host$uri/ <span class="hljs-literal">permanent</span>;<br>	&#125;<br><br>	<span class="hljs-comment"># Cache strategy</span><br>	<span class="hljs-attribute">set</span> $no_cache <span class="hljs-number">0</span>;<br><br>	<span class="hljs-comment"># POST requests and urls with a query string should always go to PHP</span><br>	<span class="hljs-attribute">if</span> ($request_method = POST) &#123;<br>		<span class="hljs-attribute">set</span> $no_cache <span class="hljs-number">1</span>;<br>	&#125;<br>	<span class="hljs-attribute">if</span> ($query_string != <span class="hljs-string">&quot;&quot;</span>) &#123;<br>		<span class="hljs-attribute">set</span> $no_cache <span class="hljs-number">1</span>;<br>	&#125;<br><br>	<span class="hljs-comment"># Don&#x27;t cache uris containing the following segments</span><br>	<span class="hljs-attribute">if</span> ($request_uri <span class="hljs-regexp">~* &quot;(/wp-admin/|/xmlrpc.php|/wp-(app|cron|login|register|mail).php|wp-.*.php|/feed/|index.php|wp-comments-popup.php|wp-links-opml.php|wp-locations.php|sitemap(_index)?.xml|[a-z0-9_-]+-sitemap([0-9]+)?.xml)&quot;)</span> &#123;<br>		<span class="hljs-attribute">set</span> $no_cache <span class="hljs-number">1</span>;<br>	&#125;<br><br>	<span class="hljs-comment"># Don&#x27;t use the cache for logged in users or recent commenters</span><br>	<span class="hljs-attribute">if</span> ($http_cookie <span class="hljs-regexp">~* &quot;comment_author|wordpress_[a-f0-9]+|wp-postpass|wordpress_no_cache|wordpress_logged_in&quot;)</span> &#123;<br>		<span class="hljs-attribute">set</span> $no_cache <span class="hljs-number">1</span>;<br>	&#125;<br><br>	<span class="hljs-attribute">location</span> <span class="hljs-regexp">~ /wp-admin</span> &#123;<br>		<span class="hljs-attribute">location</span> <span class="hljs-regexp">~ \.php$</span> &#123;<br>			<span class="hljs-attribute">include</span> snippets/fastcgi-php.conf;<br>			<span class="hljs-attribute">fastcgi_pass</span> unix:/run/php/php7.0-fpm.sock;<br>			<span class="hljs-comment"># Making the updates in Wordpress real time.</span><br>			<span class="hljs-attribute">fastcgi_buffering</span> <span class="hljs-literal">off</span>;<br>			<span class="hljs-attribute">add_header</span> X-Accel-Buffering <span class="hljs-string">&quot;no&quot;</span>;<br>		&#125;<br>	&#125;<br><br>	<span class="hljs-attribute">location</span> <span class="hljs-regexp">~ \.php$</span> &#123;<br>		<span class="hljs-attribute">include</span> snippets/fastcgi-php.conf;<br>		<span class="hljs-attribute">fastcgi_pass</span> unix:/run/php/php7.0-fpm.sock;<br>		<span class="hljs-attribute">fastcgi_connect_timeout</span> <span class="hljs-number">600</span>;<br>		<span class="hljs-attribute">fastcgi_send_timeout</span> <span class="hljs-number">600</span>;<br>		<span class="hljs-attribute">fastcgi_read_timeout</span> <span class="hljs-number">600</span>;<br>		<span class="hljs-attribute">fastcgi_buffer_size</span> <span class="hljs-number">64k</span>;<br>		<span class="hljs-attribute">fastcgi_buffers</span> <span class="hljs-number">4</span> <span class="hljs-number">64k</span>;<br>		<span class="hljs-attribute">fastcgi_busy_buffers_size</span> <span class="hljs-number">128k</span>;<br>		<span class="hljs-attribute">fastcgi_temp_file_write_size</span> <span class="hljs-number">128k</span>;<br>		<span class="hljs-attribute">fastcgi_cache_bypass</span> $no_cache;<br>		<span class="hljs-attribute">fastcgi_no_cache</span> $no_cache;<br>		<span class="hljs-attribute">fastcgi_cache</span> WORDPRESS;<br>		<span class="hljs-attribute">fastcgi_cache_valid</span> <span class="hljs-number">200</span> <span class="hljs-number">301</span> <span class="hljs-number">302</span> <span class="hljs-number">1d</span>;<br>		<span class="hljs-attribute">add_header</span> X-Cache <span class="hljs-string">&quot;$upstream_cache_status From $host&quot;</span>;<br>	&#125;<br><br>	<span class="hljs-comment"># Purge cache(Nginx Helper Purge Method: Using a Get)</span><br>	<span class="hljs-attribute">location</span> <span class="hljs-regexp">~ /purge(/.*)</span> &#123;<br>		<span class="hljs-attribute">allow</span> <span class="hljs-number">127.0.0.1</span>;<br>		<span class="hljs-attribute">allow</span> <span class="hljs-number">182.254.246.42</span>;<br>		<span class="hljs-attribute">deny</span> all;<br>		<span class="hljs-attribute">fastcgi_cache_purge</span> WORDPRESS <span class="hljs-string">&quot;$scheme$request_method$host<span class="hljs-variable">$1</span>&quot;</span>;<br>	&#125;<br><br>	<span class="hljs-comment"># Deny all attempts to access hidden files such as .htaccess, .htpasswd, .DS_Store (Mac).</span><br>	<span class="hljs-comment"># Keep logging the requests to parse later (or to pass to firewall utilities such as fail2ban)</span><br>	<span class="hljs-attribute">location</span> <span class="hljs-regexp">~ /\.</span> &#123;<br>		<span class="hljs-attribute">deny</span> all;<br>	&#125;<br><br>	<span class="hljs-comment"># Deny access to any files with a .php extension in the uploads directory</span><br>	<span class="hljs-comment"># Works in sub-directory installs and also in multisite network</span><br>	<span class="hljs-comment"># Keep logging the requests to parse later (or to pass to firewall utilities such as fail2ban)</span><br>	<span class="hljs-attribute">location</span> <span class="hljs-regexp">~* /(?:uploads|files)/.*\.php$</span> &#123;<br>		<span class="hljs-attribute">deny</span> all;<br>	&#125;<br><br>	<span class="hljs-attribute">location</span> = /favicon.ico &#123;<br>		<span class="hljs-attribute">log_not_found</span> <span class="hljs-literal">off</span>;<br>		<span class="hljs-attribute">access_log</span> <span class="hljs-literal">off</span>;<br>	&#125;<br><br>	<span class="hljs-attribute">location</span> = /robots.txt &#123;<br>		<span class="hljs-attribute">allow</span> all;<br>		<span class="hljs-attribute">log_not_found</span> <span class="hljs-literal">off</span>;<br>		<span class="hljs-attribute">access_log</span> <span class="hljs-literal">off</span>;<br>	&#125;<br><br>	<span class="hljs-attribute">location</span> <span class="hljs-regexp">~* \.(js|css|png|jpg|jpeg|gif|ico)$</span> &#123;<br>		<span class="hljs-attribute">expires</span> max;<br>		<span class="hljs-attribute">log_not_found</span> <span class="hljs-literal">off</span>;<br>		<span class="hljs-attribute">access_log</span> <span class="hljs-literal">off</span>;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="配置说明"><a class="markdownIt-Anchor" href="#配置说明"></a> 配置说明</h2>
+<p>以上配置中，需要说明的几个：</p>
+<ul>
+<li>
+<p><code>client_max_body_size 15m;</code> 因为Wordpress里很多插件的体积比较大，如果不设置这个值的大小，会导致插件或者主题安装失败。</p>
+</li>
+<li>
+<p><code>fastcgi_cache_path /tmp/wpcache levels=1:2 keys_zone=WORDPRESS:250m inactive=1d max_size=1G;</code> 这个包括下面的所有内容都是为了使 Nginx 缓存动态文件，参数对应的是缓存位置，缓存级别，缓存标识及大小，有效期，最大容量。</p>
+</li>
+<li>
+<p>由于 Nginx 不支持 Apache 的 .htaccess 文件，因此无法使用 Wordpress 自带的地址重写功能，需要自己添加相应的功能。</p>
+</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-comment"># Add rewrite support for wordpress</span><br><span class="hljs-attribute">location</span> / &#123;<br>	<span class="hljs-attribute">try_files</span> $uri $uri/ /index.php?$args;<br>	<span class="hljs-attribute">rewrite</span> /wp-admin$ $scheme://$host$uri/ <span class="hljs-literal">permanent</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><code>fastcgi_buffering off;</code> 这个选项默认是开启的，它会把 fastcgi 返回的内容缓存起来，知道缓存空间满了之后一并输出，这会导致 Wordpress 下更新时不会实时显示，而是更新完成后全部一起显示。关掉这个选项即可解决这个问题。</p>
+</li>
+<li>
+<p>由于在线安装插件、主题需要等待的时间有时候会很长，因此如果不设置 fastcgi 的读写等待时长，很容易导致安装或者更新失败，因此需要设置如下内容。</p>
+</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">fastcgi_connect_timeout</span> <span class="hljs-number">600</span>;<br><span class="hljs-attribute">fastcgi_send_timeout</span> <span class="hljs-number">600</span>;<br><span class="hljs-attribute">fastcgi_read_timeout</span> <span class="hljs-number">600</span>;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>为了更好管理动态文件缓存，我用了一个名为“Nginx hleper”的插件，为此增加了如下配置。</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-comment"># Purge cache(Nginx Helper Purge Method: Using a Get)</span><br><span class="hljs-attribute">location</span> <span class="hljs-regexp">~ /purge(/.*)</span> &#123;<br>	<span class="hljs-attribute">allow</span> <span class="hljs-number">127.0.0.1</span>;<br>	<span class="hljs-attribute">allow</span> xxx.xxx.xxx.xxx; <span class="hljs-comment"># 你的服务器地址</span><br>	<span class="hljs-attribute">deny</span> all;<br>	<span class="hljs-attribute">fastcgi_cache_purge</span> WORDPRESS <span class="hljs-string">&quot;$scheme$request_method$host<span class="hljs-variable">$1</span>&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Linux/">Linux</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/LEMP/">LEMP</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Wordpress/">Wordpress</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/09/30/C++%E6%A0%87%E5%87%86%E6%A8%A1%E6%9D%BF%E5%BA%93STL/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++标准模板库STL</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/09/30/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%80%9F%E6%9F%A5%E8%A1%A8/">
+                        <span class="hidden-mobile">正则表达式速查表</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.lazyComments('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "3thvlRFEaPVQpJJtlrogRwP8-gzGzoHsz",
+          app_key: "QueqTwpRD1mNqEskFmbaAdx1",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
