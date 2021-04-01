@@ -1,0 +1,976 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="A blog of NickHopps">
+  <meta name="author" content="NickHopps">
+  <meta name="keywords" content="Math, Computer-Science, Algorithm, Efficiency, Front-End, Back-End">
+  
+  <title>前端面试学习与总结 - Nick&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"infiniture.cn","root":"/","version":"1.8.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Nick's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                主页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com/bg-small.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="前端面试学习与总结">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-03-10 16:44" pubdate>
+        2021年3月10日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      9.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      110
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">前端面试学习与总结</h1>
+            
+            <div class="markdown-body">
+              <h1 id="网络基础知识"><a class="markdownIt-Anchor" href="#网络基础知识"></a> 网络基础知识</h1>
+<h2 id="1-http"><a class="markdownIt-Anchor" href="#1-http"></a> 1. HTTP</h2>
+<p>HTTP(Hypertext Transfer Protocol)，超文本传输协议（应用层），是互联网上应用最为广泛的一种网络协议。HTTP 是一个客户端（用户）和服务端（网站）之间请求和响应的标准，用于从服务器传输超媒体文档到本地浏览器（用户代理）。HTTP 的连接很简单，是无连接（限制每次连接只处理一个请求）无状态（不保存请求和响应之间的通信状态）的，底层使用 TCP协议进行连接，数据都是明文传输的。</p>
+<h3 id="http常用方法"><a class="markdownIt-Anchor" href="#http常用方法"></a> HTTP常用方法</h3>
+<ul>
+<li><code>GET</code>：获取资源，用来请求已被 URI 识别的资源；</li>
+<li><code>POST</code>：传输实体的主体；</li>
+<li><code>PUT</code>：传输文件；</li>
+<li><code>DELETE</code>：删除文件；</li>
+<li><code>HEAD</code>：获取报文首部；</li>
+<li><code>OPTIONS</code>：查询支持的方法。</li>
+</ul>
+<h3 id="http常见状态码"><a class="markdownIt-Anchor" href="#http常见状态码"></a> HTTP常见状态码</h3>
+<ul>
+<li><code>200 OK</code>：请求成功。一般用于 GET 与 POST 请求；</li>
+<li><code>301 Moved Permanently</code>：永久性重定向。表示请求的资源被分配了新的 URI，以后应使用资源现在所指的 URI 进行请求；</li>
+<li><code>302 Found</code>：临时性重定向。与 301 类似，但资源只是临时被移动，仅限本次使用新的 URI，之后客户端应继续使用原有 URI；</li>
+<li><code>304 Not Modified</code>：服务器资源未修改。此时可直接使用客户端未过期的缓存；</li>
+<li><code>400 Bad Request</code>：请求报文存在语法错误；</li>
+<li><code>403 Forbidden</code>：服务器理解请求客户端的请求，但是拒绝执行此请求；</li>
+<li><code>404 Not Found</code>：服务器无法根据客户端的请求找到资源；</li>
+<li><code>500 Internal Server Error</code>：服务器内部错误，无法完成请求；</li>
+<li><code>502 Bad Gateway</code>：作为网关或者代理工作的服务器尝试执行请求时，从远程服务器接收到了一个无效的响应；</li>
+<li><code>504 Gateway Time-out</code>：充当网关或代理的服务器，未及时从远端服务器获取请求。</li>
+</ul>
+<h3 id="http-常见首部字段"><a class="markdownIt-Anchor" href="#http-常见首部字段"></a> HTTP 常见首部字段</h3>
+<p>HTTP 的头部字段根据不同上下文可分为<strong>通用首部字段</strong>、<strong>请求首部字段</strong>、<strong>响应首部字段</strong>和<strong>实体首部字段</strong>；根据代理对其的处理方式又可分为<strong>端到端消息头</strong>和<strong>逐跳消息头</strong>，逐跳首部只对单次转发有效，经过缓存或代理后不再转发，HTTP/1.1和之后的版本中，要使用逐跳首部时需提供 Connection 首部字段。端到端首部则会一直发送给最终接收目标。</p>
+<h4 id="通用首部字段"><a class="markdownIt-Anchor" href="#通用首部字段"></a> 通用首部字段</h4>
+<p>缓存相关：</p>
+<ul>
+<li><code>Cache-Control</code>：控制缓存的行为（<code>客户端-(请求)-&gt;缓存服务器&lt;-(响应)-源服务器</code>）。
+<ul>
+<li>请求指令
+<ul>
+<li><code>no-cache</code>：在发布缓存副本之前，强制要求缓存把请求提交给原始服务器进行验证，即客户端不接收缓存过的响应而不代表不缓存；</li>
+<li><code>no-store</code>：缓存不应存储有关客户端请求或服务器响应的任何内容，即不使用任何缓存；</li>
+<li><code>max-age=&lt;seconds&gt;</code>：设置缓存存储的最大周期，超过这个时间缓存被认为过期，时间是相对于请求的时间；</li>
+<li><code>max-stale[=&lt;seconds&gt;]</code>：表明客户端愿意接收一个已经过期的资源。可以设置一个可选的秒数，表示响应不能已经过时超过该给定的时间；</li>
+<li><code>min-fresh=&lt;seconds&gt;</code>：表示客户端希望获取一个能在指定的秒数内保持其最新状态的响应；</li>
+<li><code>no-transform</code>：不得对资源进行转换或转变。<code>Content-Encoding</code>、<code>Content-Range</code>、<code>Content-Type</code>等HTTP头不能由代理修改；</li>
+<li><code>only-if-cached</code>：表明客户端只接受已缓存的响应，并且不要向原始服务器检查是否有更新的拷贝。</li>
+</ul>
+</li>
+<li>响应指令
+<ul>
+<li><code>public</code>：表明响应可以被任何对象（包括：发送请求的客户端，代理服务器，等等）缓存；</li>
+<li><code>private</code>：表明响应只能被单个用户缓存，不能作为共享缓存（即代理服务器不能缓存它），私有缓存可以缓存响应内容（对应用户的本地浏览器）；</li>
+<li><code>no-cache</code>：在发布缓存副本之前，强制要求缓存把请求提交给原始服务器进行验证；</li>
+<li><code>no-store</code>：缓存不应存储有关客户端请求或服务器响应的任何内容，即不使用任何缓存；</li>
+<li><code>no-transform</code>：不得对资源进行转换或转变。<code>Content-Encoding</code>、<code>Content-Range</code>、<code>Content-Type</code>等HTTP头不能由代理修改；</li>
+<li><code>must-revalidate</code>：一旦资源过期（比如已经超过<code>max-age</code>），在成功向原始服务器验证之前，缓存不能用该资源响应后续请求；</li>
+<li><code>proxy-revalidate</code>：与 <code>must-revalidate</code> 作用相同，但它仅适用于共享缓存（例如代理），并被私有缓存忽略；</li>
+<li><code>max-age=&lt;seconds&gt;</code>：设置缓存存储的最大周期，超过这个时间缓存被认为过期，时间是相对于请求的时间；</li>
+<li><code>s-maxage=&lt;seconds&gt;</code>：与 <code>max-age</code> 功能相同，但是仅适用于共享缓存(比如各个代理)，私有缓存会忽略它。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>Pragma</code>：HTTP/1.1 以前的遗留字段<code>Pargma: no-cache</code>与<code>Cache-Control: no-cache</code>功能一致，只用在客户端发送请求时；</li>
+</ul>
+<p>其他：</p>
+<ul>
+<li><code>Connection</code>：决定当前的事务完成后，是否会关闭网络连接。如果该值是 <code>keep-alive</code>，网络连接就是持久的，不会关闭，使得对同一个服务器的请求可以继续在该连接上完成。除此之外还用来控制不再转发给代理的首部字段。
+<ul>
+<li><code>close</code>：表明客户端或服务器想要关闭该网络连接，这是HTTP/1.0请求的默认值；</li>
+<li><code>keep-alive</code>：表明客户端想要保持该网络连接打开，HTTP/1.1的请求默认使用一个持久连接；</li>
+<li>以逗号分隔的 HTTP 头：这个请求头列表由头部名组成，这些头将被第一个非透明的代理或者代理间的缓存所移除：这些头定义了发出者和第一个实体之间的连接，而不是和目的地节点间的连接。</li>
+</ul>
+</li>
+<li><code>Date</code>：创建 HTTP 报文的时间和日期；</li>
+<li><code>Keep-Alive</code>：在 <code>Connection</code> 设置为 <code>keep-alive</code> 时有效，允许发送方设置连接超时和最大请求数；</li>
+<li><code>Trailer</code>：说明在报文主体后记录了哪些首部字段；</li>
+<li><code>Transfer-Encoding</code>：传输报文主体时采用的编码方式；</li>
+<li><code>Upgrade</code>：可用于将已经建立的客户端/服务器连接升级到其他协议（通过相同的传输协议）；</li>
+<li><code>Via</code>：追踪客户端与服务器之前的请求和响应报文的传输路径；</li>
+<li><code>Warning</code>：可能出现的问题的常规警告信息。</li>
+</ul>
+<h4 id="请求首部字段"><a class="markdownIt-Anchor" href="#请求首部字段"></a> 请求首部字段</h4>
+<p>内容协商：</p>
+<ul>
+<li><code>Accept</code>：用来告知（服务器）客户端可以处理的内容类型及其优先级，这种内容类型用 MIME 类型来表示（如：<code>text/html</code>、<code>text/plain</code>、<code>application/json</code>、<code>image/png</code> 等）；
+<ul>
+<li><code>&lt;MIME_type&gt;/&lt;MIME_subtype&gt;</code>：单一精确的 MIME 类型；</li>
+<li><code>*/*</code>：任意类型的 MIME 类型；</li>
+<li><code>;q=&lt;weight&gt;</code>：值代表优先顺序，用相对质量价值表示，又称作权重。</li>
+</ul>
+</li>
+<li><code>Accept-Charset</code>：告知服务器用户代理支持的字符集及其优先级；</li>
+<li><code>Accept-Encoding</code> 告知服务器用户代理支持的内容编码及其优先级；
+<ul>
+<li><code>gzip</code>：由文件压缩程序 <code>gzip</code> 生成的编码格式；</li>
+<li><code>compress</code>：由 UNIX 文件压缩程序 <code>compress</code> 生成的编码格式；</li>
+<li><code>deflate</code>：组合使用 zlib 格式及由 deflate 压缩算法生成的编码格式；</li>
+<li><code>identify</code>：不执行压缩或不会变化的默认编码格式。</li>
+</ul>
+</li>
+<li><code>Accept-Language</code>：告知服务器用户代理支持的语言集及其优先级（中文、英文等）；</li>
+<li><code>TE</code>：告知服务器用户代理能够处理的传输编码及其优先级，还可以指定伴随 trailer 字段的分块传输编码方式。</li>
+</ul>
+<p>条件请求：</p>
+<ul>
+<li><code>Expect</code>：客户端通过该字段告知服务器只有在满足期望条件的情况下才能妥善地处理请求，如果服务器无法处理该期望条件，就应该返回 <code>417 Expectation Failed</code>。目前规范中只规定了 “100-continue” 这一个期望条件；</li>
+<li><code>If-Match</code>：服务器会比对该字段的值和资源的 ETag 值，仅当两者一致时，才会执行请求，否则，返回 <code>412 Precondition Failed</code>。该字段值为 <code>*</code> 时，会忽略 ETag 值；</li>
+<li><code>If-Modified-Since</code>：该字段值应该是一个日期，如果服务器上资源的更新时间较该字段值新则处理该请求，否则，返回 <code>304 Not Modified</code>；</li>
+<li><code>If-None-Match</code>：与 <code>If-Match</code> 相反，该字段的值与请求资源的 ETag 不一致时，处理该请求；</li>
+<li><code>If-Range</code>：该字段的值（ETag 或时间）与资源的 ETag 或时间一致时，作为范围请求处理（使用首部字段 <code>Range</code>），否则，返回全体资源；</li>
+<li><code>If-Unmodified-Since</code>：与 <code>If-Modified-Since</code> 相反，服务器上资源的更新时间早于该字段值时处理请求，否则，返回<code>412 Precondition Failed</code>；</li>
+<li><code>Range</code>：范围请求，只获取部分资源。如 <code>Range: bytes=5001-10000</code>，表示获取从第 5001 字节至 10000 字节的资源。成功处理范围请求时返回 <code>206 Partial Content</code> 响应，无法处理范围请求时返回 <code>200 OK</code> 响应及全部资源。</li>
+</ul>
+<p>验证相关：</p>
+<ul>
+<li>
+<p><code>Authorization</code>：向服务器回应自己的身份验证信息。客户端收到来自服务器的 <code>401 Authentication Required</code> 响应后，要在其请求中包含这个首部；</p>
+</li>
+<li>
+<p><code>Proxy-Authorization</code>：与<code>Authorization</code>类似，用于客户端与代理服务器之间的身份验证。</p>
+</li>
+</ul>
+<p>安全相关：</p>
+<ul>
+<li><code>Cookie</code>：包含与服务器相关联的已存储的 Cookie（即服务器先前使用 <code>Set-Cookie</code> 发送的 Cookie，或使用 <code>Document.cookie</code> 在 Javascript 中设置的 Cookie）。</li>
+</ul>
+<p>其他：</p>
+<ul>
+<li><code>From</code>：请求来自何方，格式是客户端用户的有效电子邮件地址；</li>
+<li><code>Host</code>：服务器的主机名和端口号；</li>
+<li><code>Referer</code>：这次请求的 URL 是从哪里获得的；</li>
+<li><code>User-Agent</code>：客户端的浏览器或代理信息。</li>
+</ul>
+<h4 id="响应首部字段"><a class="markdownIt-Anchor" href="#响应首部字段"></a> 响应首部字段</h4>
+<p>条件响应：</p>
+<ul>
+<li><code>Accept-Ranges</code>：服务器是否能处理范围请求，<code>bytes</code> 表示能，<code>none</code> 表示不能；</li>
+<li><code>ETag</code>：用于表示服务器资源特定版本的标识符，服务器资源更新时，ETag 值也会更新，如果服务器资源未更改，则 ETag 值不变。服务器通过对比 <code>If-None-Match</code> 发送的 ETag 值，决定Web 服务器不需要重新发送完整的响应；</li>
+<li><code>Vary</code>：指定一些首部名称，客户端后续请求相同资源时，这些首部与缓存的那次请求完全一致时才会返回缓存的资源，同时服务器可以使用它来指示在内容协商中使用了哪些首部名称。</li>
+</ul>
+<p>验证相关：</p>
+<ul>
+<li><code>Proxy-Authorizate</code>：与 <code>WWW-Authenticate</code> 类似，用于代理与客户端之间的认证，<code>407 Proxy Authentication Required</code> 响应必须包含该首部；</li>
+<li><code>WWW-Authenticate</code>：告诉客户端访问所请求资源的认证方案，<code>401 Unauthorized</code> 响应中肯定有该首部。</li>
+</ul>
+<p>安全相关：</p>
+<ul>
+<li><code>Set-Cookie</code>：用于将 Cookie 从服务器发送到用户代理。</li>
+</ul>
+<p>其他：</p>
+<ul>
+<li><code>Age</code>：表示对象在代理缓存中的停留时间（以秒为单位）；</li>
+<li><code>Location</code>：客户端应重定向到指定 URI，基本配合 <code>3**</code> 响应出现；</li>
+<li><code>Retry-After</code>：告诉客户端多久之后再次发送请求。主要配合 <code>503 Service Unavailable</code> 使用，或与 <code>3**</code> 响应一起使用；</li>
+<li><code>Server</code>：HTTP 服务器的应用程序信息。</li>
+</ul>
+<h4 id="实体首部字段"><a class="markdownIt-Anchor" href="#实体首部字段"></a> 实体首部字段</h4>
+<p>实体主体：</p>
+<ul>
+<li><code>Content-Encoding</code>：告诉客户端实体的主体部分选用的内容编码方式；</li>
+<li><code>Content-Language</code>：告诉客户端实体主体使用的自然语言（中文、英文等）；</li>
+<li><code>Content-Length</code>：表明实体主体部分的大小（单位：字节）。对实体主体进行内容编码传输时，不能再使用该首部字段；</li>
+<li><code>Content-Location</code>：报文主体部分相对应的 URI；</li>
+<li><code>Content-MD5</code>：一串由 MD5 算法生成的值。对于检查在传输过程中数据是否被无意的修改非常有用，但不能用于安全目的，因为报文如果被有意的修改，该字段的值也可以计算后作相应修改；</li>
+<li><code>Content-Range</code>：针对范围请求，提供了请求实体在原始实体内的位置（范围），还给出了整个实体的长度；</li>
+<li><code>Content-Type</code>：响应报文中对象的媒体类型。</li>
+</ul>
+<p>缓存相关：</p>
+<ul>
+<li><code>Expires</code>：资源失效日期，当 <code>Cache-Control</code> 有指定 <code>max-age</code> 指令时，会优先处理 <code>max-age</code>；</li>
+<li><code>Last-Modified</code>：资源最终修改时间。</li>
+</ul>
+<p>其他：</p>
+<ul>
+<li><code>Allow</code>：通知客户端可以对特定资源使用那些 HTTP 方法。<code>405 Method Not Allowed</code> 响应中必须包含该首部。</li>
+</ul>
+<h3 id="http-缓存"><a class="markdownIt-Anchor" href="#http-缓存"></a> HTTP 缓存</h3>
+<p>HTTP 缓存按缓存地点可分为浏览器缓存和代理缓存，而根据缓存方式可分为强缓存（也称本地缓存）和协商缓存（也称弱缓存）。</p>
+<p><img src="https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com//20210330143325.webp" srcset="/img/loading.gif" lazyload alt="640029216-5bad97d9bb48c_fix732" /></p>
+<ul>
+<li>强缓存：强缓存是利用 HTTP 首部字段中的 <code>Expires</code> 和 <code>Cache-Control</code> 两个字段来控制的，用来表示资源的缓存时间。使用普通刷新时会忽略它，使用强制刷新时会带上 <code>Cache-Control:no-cache</code> 和 <code>Pragma:no-cache</code> 首部字段；</li>
+<li>协商缓存：协商缓存就是由服务器来确定缓存资源是否可用，所以客户端与服务器端要通过某种标识来进行通信，从而让服务器判断请求资源是否可以缓存访问。普通刷新会启用弱缓存，忽略强缓存。协商缓存主要涉及到两组首部字段：<code>Etag</code>和 <code>If-None-Match</code>、<code>Last-Modified</code> 和 <code>If-Modified-Since</code>。两组字段同时使用的情况下，服务器会优先验证 <code>ETag</code>，一致的情况下，才会继续比对 <code>Last-Modified</code>，最后才决定是否返回 <code>304 Not Modified</code>。</li>
+</ul>
+<h3 id="http-安全策略"><a class="markdownIt-Anchor" href="#http-安全策略"></a> HTTP 安全策略</h3>
+<p>CSP(Content-Security-Policy)：实质就是白名单制度，常用于防止跨站点脚本攻击（XSS）。开发者明确告诉客户端，哪些外部资源可以加载和执行。它的实现和执行全部由浏览器完成，开发者只需提供配置。CSP 大大增强了网页的安全性。攻击者即使发现了漏洞，也没法注入脚本，除非还控制了一台列入了白名单的可信主机。</p>
+<p>启用 CSP 的方式有两种：</p>
+<ul>
+<li>通过 <code>Content-Security-Policy</code> 首部字段；</li>
+<li>通过 HTML 的 <code>&lt;meta&gt;</code> 标签。</li>
+</ul>
+<p>资源加载限制指令：</p>
+<ul>
+<li><code>script-src</code>：外部脚本；</li>
+<li><code>style-src</code>：样式表；</li>
+<li><code>img-src</code>：图像；</li>
+<li><code>media-src</code>：媒体文件（音频和视频）；</li>
+<li><code>font-src</code>：字体文件；</li>
+<li><code>object-src</code>：插件（比如 Flash）；</li>
+<li><code>child-src</code>：框架；</li>
+<li><code>frame-ancestors</code>：嵌入的外部资源（比如 <code>&lt;frame&gt;</code>、<code>&lt;iframe&gt;</code>、<code>&lt;embed&gt;</code> 和 <code>&lt;applet&gt;</code>） ；</li>
+<li><code>connect-src</code>：HTTP 连接（通过 XHR、WebSockets、EventSource等）；</li>
+<li><code>worker-src</code>：<code>worker</code>脚本；</li>
+<li><code>manifest-src</code>：manifest 文件；</li>
+<li><code>default-src</code>：来设置上面各个选项的默认值，如果同时设置某个单项限制（比如 <code>font-src</code>），则该单项会覆盖默认值。</li>
+</ul>
+<p>URL 限制指令：</p>
+<ul>
+<li><code>frame-ancestors</code>：限制嵌入框架的网页；</li>
+<li><code>base-uri</code>：限制 <code>&lt;base#href&gt;</code>；</li>
+<li><code>form-action</code>：限制 <code>&lt;form#action&gt;</code>。</li>
+</ul>
+<p>其他限制指令：</p>
+<ul>
+<li><code>block-all-mixed-content</code>：HTTPS 网页不得加载 HTTP 资源（浏览器已经默认开启）；</li>
+<li><code>upgrade-insecure-requests</code>：自动将网页上所有加载外部资源的 HTTP 链接换成 HTTPS 协议</li>
+<li><code>plugin-types</code>：限制可以使用的插件格式；</li>
+<li><code>sandbox</code>：浏览器行为的限制，比如不能有弹出窗口等；</li>
+<li><code>report-uri</code>：仅记录不阻止 XSS 攻击，参数为一个 URL。该指令使用<code>POST</code>方法，发送一个 JSON 对象报告攻击行为给这个地址。</li>
+</ul>
+<p>指令可用值：</p>
+<ul>
+<li>主机名：<code>example.org</code>，<code>https://example.com:443</code>；</li>
+<li>路径名：<code>example.org/resources/js/</code>；</li>
+<li>通配符：<code>*.example.org</code>，<code>*://*.example.com:*</code>（表示任意协议、任意子域名、任意端口）</li>
+<li>协议名：<code>https:</code>、<code>data:</code>；</li>
+<li>关键字<code>'self'</code>：当前域名，需要加引号</li>
+<li>关键字<code>'none'</code>：禁止加载任何外部资源，需要加引号。</li>
+</ul>
+<p>除了常规值，<code>script-src</code>还可以设置一些特殊值：</p>
+<ul>
+<li><code>'unsafe-inline'</code>：允许执行页面内嵌的 <code>&lt;script&gt;</code> 标签和事件监听函数；</li>
+<li><code>unsafe-eval</code>：允许将字符串当作代码执行，比如使用 <code>eval</code>、<code>setTimeout</code>、<code>setInterval</code> 和 <code>Function</code> 等函数；</li>
+<li>nonce 值：每次HTTP回应给出一个授权 token，页面内嵌脚本必须有这个 token，才会执行；</li>
+<li>hash 值：列出允许执行的脚本代码的 Hash 值，页面内嵌脚本的哈希值只有吻合的情况下，才能执行。</li>
+</ul>
+<h3 id="http-持久连接"><a class="markdownIt-Anchor" href="#http-持久连接"></a> HTTP 持久连接</h3>
+<p>HTTP1.0 和HTTP1.1 都不支持持久性的链接，不过为了解决这个问题，HTTP1.1 提出了 keep-alive（HTTP connection reuse）的方法，在一定时间内保持连接状态。</p>
+<h3 id="http-状态管理"><a class="markdownIt-Anchor" href="#http-状态管理"></a> HTTP 状态管理</h3>
+<p>由于 HTTP 本身是无状态的，为了实现类似保存用户登录状态的功能，引入了 Cookie 技术，通过在请求和响应报文中写入 Cookie 信息来控制客户端的状态。 Cookie 会根据服务端发送的 <code>Set-Cookie</code> 首部字段信息，通知客户端保存 Cookie，下次客户端发送请求时，会自动在请求报文内加入 Cookie。</p>
+<p>Cookie 主要用于以下三个方面：</p>
+<ul>
+<li>会话状态管理（如用户登录状态、购物车、游戏分数或其它需要记录的信息）；</li>
+<li>个性化设置（如用户自定义设置、主题等）；</li>
+<li>浏览器行为跟踪（如跟踪分析用户行为等）。</li>
+</ul>
+<h2 id="2-https"><a class="markdownIt-Anchor" href="#2-https"></a> 2. HTTPS</h2>
+<p>超文本传输安全协议，HTTPS 经由 HTTP 进行通信，但利用 SSL/TLS 来加密数据包，主要作用是在不安全的网络上创建一个安全信道，并可在使用适当的加密包和服务器证书可被验证且可被信任时，对窃听和中间人攻击提供合理的防护。</p>
+<h3 id="https-协议的工作原理"><a class="markdownIt-Anchor" href="#https-协议的工作原理"></a> HTTPS 协议的工作原理</h3>
+<ul>
+<li>
+<p>客户端使用 HTTPS 请求访问服务器，要求 WEB 服务器建立 SSL 连接；</p>
+</li>
+<li>
+<p>WEB 服务器接收到客户端的请求之后，会将网站的证书（证书中包含了公钥）返回给客户端；</p>
+</li>
+<li>
+<p>客户端和 WEB 服务器端开始协商 SSL 连接的安全等级，也就是加密等级；</p>
+</li>
+<li>
+<p>客户端浏览器通过双方协商一致的安全等级，建立会话密钥，然后通过网站的公钥来加密会话密钥，并传送给网站；</p>
+</li>
+<li>
+<p>WEB 服务器通过自己的私钥解密出会话密钥；</p>
+</li>
+<li>
+<p>WEB 服务器通过会话密钥加密与客户端之间的通信。</p>
+</li>
+</ul>
+<h3 id="https协议的优缺点"><a class="markdownIt-Anchor" href="#https协议的优缺点"></a> HTTPS协议的优缺点</h3>
+<ul>
+<li>优点：使用HTTPS协议可认证用户和服务器，确保数据发送到正确的客户机和服务器；</li>
+<li>缺点：https握手阶段比较费时，会使页面加载时间延长50%，增加10%~20%的耗电；https缓存不如http高效，会增加数据开销；SSL证书成本较高。</li>
+</ul>
+<h2 id="3-tcp-连接的建立和释放"><a class="markdownIt-Anchor" href="#3-tcp-连接的建立和释放"></a> 3. TCP 连接的建立和释放</h2>
+<h3 id="tcp-建立连接三次握手"><a class="markdownIt-Anchor" href="#tcp-建立连接三次握手"></a> TCP 建立连接（三次握手）</h3>
+<p>服务器保持监听状态，客户端主动发起连接，收到服务器响应后建立连接，服务器收到客户端连接请求后进一步确认客户端可连接，收到客户端响应后建立连接，此时客户端服务端双方都已确认各自可收发。（最后一次握手的作用：防止已经失效的连接请求报文突然又传送到了服务器，从而产生错误）</p>
+<p><img src="https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com//image-20210312113504239.png" srcset="/img/loading.gif" lazyload alt="image-20210312113504239" /></p>
+<h3 id="tcp连接释放四次挥手"><a class="markdownIt-Anchor" href="#tcp连接释放四次挥手"></a> TCP连接释放（四次挥手）</h3>
+<p>客户端主动发起连接释放请求，并且停止发送数据，服务器收到后返回确认信息，同时开始传输最后的数据，此时客户端还要等待服务器传回的数据。传输完成后服务器也发起连接释放请求，等待客户端回应后直接关闭连接，而客户端还需要等待2MSL（Maximum Segment Lifetime）后才关闭连接。（等待2MSL的作用：保证客户端发送的最后一个ACK报文能够到达服务器，因为这个ACK报文可能丢失，同时防止类似与“三次握手”中提到了的“已经失效的连接请求报文段”出现在本连接中）</p>
+<p><img src="https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com//image-20210312114150079.png" srcset="/img/loading.gif" lazyload alt="image-20210312114150079" /></p>
+<h1 id="浏览器基础"><a class="markdownIt-Anchor" href="#浏览器基础"></a> 浏览器基础</h1>
+<h2 id="1-html-基础"><a class="markdownIt-Anchor" href="#1-html-基础"></a> 1. HTML 基础</h2>
+<h3 id="doctype-的作用"><a class="markdownIt-Anchor" href="#doctype-的作用"></a> Doctype 的作用</h3>
+<p>Doctype 声明于文档最前面，告诉浏览器以何种方式来渲染页面，分为严格模式和混杂模式。</p>
+<ul>
+<li>严格模式：排版和 JS 的运作模式以该浏览器支持的最高标准运行；</li>
+<li>混杂模式：向后兼容，模拟老式浏览器，防止浏览器无法兼容页面。</li>
+</ul>
+<h3 id="本地存储"><a class="markdownIt-Anchor" href="#本地存储"></a> 本地存储</h3>
+<p>Cookie、sessionStorage、localStorage 的异同：</p>
+<ul>
+<li>首先三者都是保存在浏览器端，并且是同源的 ；</li>
+<li>Cookie：可以在浏览器和服务器端来回传递，存储容量小，只有大约4K左右；</li>
+<li>sessionStorage：本身就是一个会话过程，关闭浏览器后消失，session为一个会话，当页面不同即使是同一页面打开两次，也被视为同一次会话；</li>
+<li>localStorage：同源窗口都会共享，并且不会失效，不管窗口或者浏览器关闭与否都会始终生效。</li>
+</ul>
+<h3 id="xss-和-csrf"><a class="markdownIt-Anchor" href="#xss-和-csrf"></a> XSS 和 CSRF</h3>
+<ul>
+<li>XSS(Cross-Site Scripting)：跨站脚本攻击，攻击者通过向页面注入代码，达到窃取信息等目的，本质是数据被当作程序执行，常使用输入检查/转义或 CSP 内容安全策略的方法避免攻击；</li>
+<li>CSRF(Cross-Site Request Forgery)：跨站请求伪造，与 XSS 不同的是，XSS 是攻击者直接对我们的网站 A 进行注入攻击，CSRF 是通过网站 B 对我们的网站 A 进行伪造请求。常使用同源检测、Samesite Cookie、Token 验证等方式来避免攻击。</li>
+</ul>
+<h3 id="corscross-origin-resource-sharing"><a class="markdownIt-Anchor" href="#corscross-origin-resource-sharing"></a> CORS（Cross-Origin Resource Sharing）</h3>
+<p>跨域资源共享，是一种基于 HTTP 头的机制，该机制通过允许服务器标示除了它自己以外的其它源（域，协议和端口），这样浏览器就可以访问加载这些资源。跨源资源共享标准新增了一组 HTTP 首部字段，允许服务器声明哪些源站通过浏览器有权限访问哪些资源。另外，规范要求，对那些可能对服务器数据产生副作用的 HTTP 请求方法（特别是 GET 以外的 HTTP 请求，或者搭配某些 MIME 类型的 POST 请求），浏览器必须首先使用 OPTIONS 方法发起一个预检请求（preflight request），从而获知服务端是否允许该跨源请求。服务器确认允许之后，才发起实际的 HTTP 请求。在预检请求的返回中，服务器端也可以通知客户端，是否需要携带身份凭证（包括 Cookies 和 HTTP 认证相关数据）。</p>
+<p><img src="https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com//cors_principle.png" srcset="/img/loading.gif" lazyload alt="cors_principle" /></p>
+<ul>
+<li>简单请求：不会触发 CORS 预检请求的请求称为简单请求，若请求满足所有下述条件，则该请求可视为“简单请求”：
+<ul>
+<li>使用下列方法之一：<code>GET</code>、<code>HEAD</code>、<code>POST</code>；</li>
+<li>允许人为设置的字段：<code>Accept</code>、<code>Accept-Language</code>、<code>Content-Language</code> 和 <code>Content-Type</code>；</li>
+<li><code>Content-Type</code> 仅允许 <code>text/plain</code>、<code>multipart/form-data</code> 或 <code>application/x-www-form-urlencoded</code>；</li>
+<li>请求中没有在任何 <code>XMLHttpRequest.upload</code> 对象上注册事件侦听器；</li>
+<li>请求中没有使用 <code>ReadableStream</code> 对象。</li>
+</ul>
+</li>
+<li>预检请求：需预检的请求要求必须首先使用 <code>OPTIONS</code> 方法发起一个预检请求到服务器，以获知服务器是否允许该实际请求。预检请求的使用，可以避免跨域请求对服务器的用户数据产生未预期的影响。</li>
+<li>JSONP：解决跨域问题的另一种方法，通过 <code>&lt;script&gt;</code> 标签的 <code>src</code> 属性请求服务端返回数据和回调函数，浏览器执行后即可拿到数据。</li>
+</ul>
+<h2 id="2-css-基础"><a class="markdownIt-Anchor" href="#2-css-基础"></a> 2. CSS 基础</h2>
+<h3 id="重绘和重排"><a class="markdownIt-Anchor" href="#重绘和重排"></a> 重绘和重排</h3>
+<p>DOM 的变化影响到了元素的几何属性比如宽高，浏览器重新计算元素的几何属性，其他元素的几何属性也会受到影响，浏览器需要重新构造渲染树，这个过程称之为重排，浏览器将受到影响的部分重新绘制在屏幕上的过程称为重绘。重排一定导致重绘，重绘不一定导致重排，引起重排重绘的原因有：</p>
+<ul>
+<li>添加或者删除可见的 DOM 元素；</li>
+<li>元素尺寸位置的改变；</li>
+<li>浏览器页面初始化；</li>
+<li>浏览器窗口大小发生改变。</li>
+</ul>
+<h3 id="bfcblock-fomatting-context"><a class="markdownIt-Anchor" href="#bfcblock-fomatting-context"></a> BFC（Block Fomatting Context）</h3>
+<p>BFC，块级格式化上下文，用于解决浮动元素溢出和 margin 重叠的问题，常见的创建 BFC 的方式有：</p>
+<ul>
+<li>浮动元素（float 不为 none）；</li>
+<li>绝对定位元素；</li>
+<li>行内块元素；</li>
+<li>表格单元格、表格标题、匿名表格单元格元素；</li>
+<li>overflow 计算值不为 visible 的块元素；</li>
+<li>display 值为 flow-root 的元素等。</li>
+</ul>
+<h3 id="css-动画"><a class="markdownIt-Anchor" href="#css-动画"></a> CSS 动画</h3>
+<ul>
+<li>transition 和 animation 的区别：animation 和 transition 大部分属性是相同的，他们都是随时间改变元素的属性值，他们的主要区别是 transition 需要触发一个事件才能改变属性，而 animation 不需要触发任何事件的情况下才会随时间改变属性值，并且 transition 为 2 帧，从from … to，而 animation 可以逐帧。</li>
+</ul>
+<h2 id="3javascript-基础"><a class="markdownIt-Anchor" href="#3javascript-基础"></a> 3.JavaScript 基础</h2>
+<h3 id="js-代码执行过程"><a class="markdownIt-Anchor" href="#js-代码执行过程"></a> JS 代码执行过程</h3>
+<p>JS 作为一种解释型语言，代码执行总共包含两个阶段：解释阶段和执行阶段。</p>
+<ul>
+<li>
+<p>解释阶段：</p>
+<ul>
+<li>词法分析</li>
+<li>语法分析</li>
+<li>作用域规则确定（需要注意的是，作用域链在创建时确定而非执行时）</li>
+</ul>
+<p>执行阶段：</p>
+<ul>
+<li>创建执行上下文</li>
+<li>执行函数代码</li>
+<li>垃圾回收</li>
+</ul>
+</li>
+</ul>
+<h3 id="事件循环event-loop"><a class="markdownIt-Anchor" href="#事件循环event-loop"></a> 事件循环（Event Loop）</h3>
+<p>JavaScript 引擎遇到一个异步事件后并不会一直等待其返回结果，而是会将这个事件挂起，继续执行执行栈中的其他任务。当一个异步事件返回结果后，JavaScript 会将这个事件加入与当前执行栈不同的另一个队列，我们称之为事件队列。被放入事件队列不会立刻执行其回调，而是等待当前执行栈中的所有任务都执行完毕，  主线程处于闲置状态时，主线程会去查找事件队列是否有任务。如果有，那么主线程会从中取出排在第一位的事件，并把这个事件对应的回调放入执行栈中，然后执行其中的同步代码…，如此反复，这样就形成了一个无限的循环。这就是这个过程被称为“事件循环”的原因。</p>
+<p><img src="https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com//20210319093824.png" srcset="/img/loading.gif" lazyload alt="v2-da078fa3eadf3db4bf455904ae06f84b_720w" /></p>
+<p>实际上因为异步任务之间并不相同，因此他们的执行优先级也有区别。不同的异步任务被分为两类：微任务（micro task）和宏任务（macro task）：</p>
+<ul>
+<li>微任务：
+<ul>
+<li><code>new Promise()</code>；</li>
+<li><code>new MutaionObserver()</code>；</li>
+<li><code>process.nextTick()</code> （Node，实际上不属于事件循环）。</li>
+</ul>
+</li>
+<li>宏任务：
+<ul>
+<li>script(主程序代码)；</li>
+<li><code>setInterval()；</code></li>
+<li><code>setTimeout()；</code></li>
+<li><code>setImmediate()</code>（Node）；</li>
+<li>I/O；</li>
+<li>UI交互事件。</li>
+</ul>
+</li>
+</ul>
+<p>二者的优先顺序为：当当前执行栈执行完毕时会立刻先处理所有微任务队列中的事件，然后再去宏任务队列中取出一个事件。同一次事件循环中，微任务永远在宏任务之前执行。</p>
+<p>在事件循环中，每进行一次循环操作称为 tick，每一次 tick 的任务处理模型是比较复杂的，但关键步骤如下：</p>
+<ul>
+<li>执行一个宏任务（栈中没有就从事件队列中获取）</li>
+<li>执行过程中如果遇到微任务，就将它添加到微任务的任务队列中</li>
+<li>宏任务执行完毕后，立即执行当前微任务队列中的所有微任务（依次执行）</li>
+<li>当前宏任务执行完毕，开始检查渲染，然后GUI线程接管渲染</li>
+<li>渲染完毕后，JS线程继续接管，开始下一个宏任务（从事件队列中获取）</li>
+</ul>
+<h4 id="node-环境下的事件循环"><a class="markdownIt-Anchor" href="#node-环境下的事件循环"></a> Node 环境下的事件循环</h4>
+<p>在 node 中，事件循环表现出的状态与浏览器中大致相同。不同的是 node 中有一套自己的模型。node 中事件循环的实现是依靠的 libuv 引擎。我们知道 node 选择 chrome v8 引擎作为 JS 解释器，v8 引擎将 JS 代码分析后去调用对应的 node  api，而这些 api 最后则由 libuv 引擎驱动，执行对应的任务，并把不同的事件放在不同的队列中等待主线程执行。因此实际上 node 中的事件循环存在于 libuv 引擎中。</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs smali">   ┌───────────────────────┐<br>┌─&gt;│        timers         │<br>│  └──────────┬────────────┘<br>│  ┌──────────┴────────────┐<br>│  │     I/O callbacks     │<br>│  └──────────┬────────────┘<br>│  ┌──────────┴────────────┐<br>│  │     idle, prepare     │<br>│  └──────────┬────────────┘      ┌───────────────┐<br>│  ┌──────────┴────────────┐      │   incoming:   │<br>│  │         poll          │&lt;--connections---     │<br>│  └──────────┬────────────┘      │   data, etc.  │<br>│  ┌──────────┴────────────┐      └───────────────┘<br>│  │       <span class="hljs-built_in"> check </span>         │<br>│  └──────────┬────────────┘<br>│  ┌──────────┴────────────┐<br>└──┤    close callbacks    │<br>   └───────────────────────┘<br></code></pre></td></tr></table></figure>
+<p>这些阶段大致的功能如下：</p>
+<ul>
+<li>timers：这个阶段执行定时器队列中的回调如 <code>setTimeout()</code> 和 <code>setInterval()</code>；</li>
+<li>I/O callbacks：这个阶段执行几乎所有的回调。但是不包括 close 事件，定时器和 <code>setImmediate()</code> 的回调；</li>
+<li>idle, prepare：这个阶段仅在内部使用，可以不必理会；</li>
+<li>poll：等待新的I/O事件，node在一些特殊情况下会阻塞在这里；</li>
+<li>check：<code>setImmediate()</code> 的回调会在这个阶段执行；</li>
+<li>close callbacks：例如 <code>socket.on('close', ...)</code> 这种close事件的回调。</li>
+</ul>
+<h3 id="事件流event-flow"><a class="markdownIt-Anchor" href="#事件流event-flow"></a> 事件流（Event Flow）</h3>
+<p>事件流描述的是从页面中接收事件的顺序，早期的 IE 和 Netscape 提出了完全相反的事件流概念，IE 事件流是事件冒泡，而 Netscape 的事件流就是事件捕获。事件冒泡（事件委托就是利用冒泡实现的），即从下至上，从目标触发的元素逐级向上传播，直到 window 对象；事件捕获，即从 document 逐级向下传播到目标元素。目前主要有 DOM0~3 总共4个级别。</p>
+<p>事件流的三个阶段：</p>
+<ul>
+<li>
+<p>事件捕获阶段</p>
+</li>
+<li>
+<p>处于目标阶段</p>
+</li>
+<li>
+<p>事件冒泡阶段</p>
+</li>
+</ul>
+<p><img src="https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com//eventflow.svg" srcset="/img/loading.gif" lazyload alt="eventflow" /></p>
+<ul>
+<li>DOM0：使用<code>elem.onXXX</code>的形式绑定事件；</li>
+<li>DOM2：DOM2级事件规定的事件流包括三个阶段： （1）事件捕获阶段 （2）处于目标阶段 （3）事件冒泡阶段，通过2个方法来绑定事件：<code>addEventListener()</code> 和 <code>removeEventListener()</code>。</li>
+</ul>
+<h3 id="垃圾回收"><a class="markdownIt-Anchor" href="#垃圾回收"></a> 垃圾回收</h3>
+<p>垃圾回收的方法：标记清除、计数引用。</p>
+<ul>
+<li>标记清除：这是最常见的垃圾回收方式，当变量进入环境时，就标记这个变量为”进入环境“,从逻辑上讲，永远不能释放进入环境的变量所占的内存，只要执行流程进入相应的环境，就可能用到他们。当离开环境时，就标记为离开环境。垃圾回收器在运行的时候会给存储在内存中的变量都加上标记（所有都加），然后去掉环境变量中的变量，以及被环境变量中的变量所引用的变量（条件性去除标记），删除所有被标记的变量，删除的变量无法在环境变量中被访问所以会被删除，最后垃圾回收器，完成了内存的清除工作，并回收他们所占用的内存。</li>
+<li>计数引用：另一种不太常见的方法就是引用计数法，引用计数法的意思就是每个值没引用的次数，当声明了一个变量，并用一个引用类型的值赋值给改变量，则这个值的引用次数为1,；相反的，如果包含了对这个值引用的变量又取得了另外一个值，则原先的引用值引用次数就减1，当这个值的引用次数为0的时候，说明没有办法再访问这个值了，因此就把所占的内存给回收进来，这样垃圾收集器再次运行的时候，就会释放引用次数为0的这些值。</li>
+</ul>
+<h3 id="模块化"><a class="markdownIt-Anchor" href="#模块化"></a> 模块化</h3>
+<ul>
+<li>CommonJS：CommonJS是服务器模块的规范，Node.js采用了这个规范。根据 CommonJS 规范，一个单独的文件就是一个模块，每一个模块都是一个单独的作用域，在一个文件定义的变量（还包括函数和类），都是私有的，对其他文件是不可见的。CommonJS规范加载模块是同步的，也就是说，只有加载完成，才能执行后面的操作。</li>
+<li>AMD（Asynchronous Module Definition）：AMD 规范加载模块是异步的，并允许函数回调，不必等到所有模块都加载完成，后续操作可以正常执行。AMD 中，使用 require 获取依赖模块，使用 exports 导出 API。</li>
+<li>CMD（Common Module Definition）：CMD规范和AMD类似，都主要运行于浏览器端，写法上看起来也很类似。主要是区别在于模块初始化时机：AMD中只要模块作为依赖时，就会加载并初始化，而CMD中，模块作为依赖且被引用时才会初始化，否则只会加载；CMD 推崇依赖就近，AMD 推崇依赖前置。</li>
+<li>UMD（Universal Module Definition）：UMD 是AMD 和 CommonJS 的糅合。UMD 先判断是否支持 Node.js 的模块（exports）是否存在，存在则使用 Node.js 模块模式。再判断是否支持 AMD（define 是否存在），存在则使用 AMD 方式加载模块。</li>
+</ul>
+<h3 id="继承"><a class="markdownIt-Anchor" href="#继承"></a> 继承</h3>
+<p>由于 JavaScript 是一门基于原型的语言，因此无法直接实现传统意义上的继承。</p>
+<ul>
+<li>原型链继承：将父类的实例作为子类的原型。
+<ul>
+<li>缺点：父类的引用属性会被所有子类实例共享。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">SubType.prototype = <span class="hljs-keyword">new</span> SuperType();<br>SubType.prototype.constructor = SubType;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>构造函数继承：将父类构造函数的内容复制给了子类的构造函数。这是所有继承中唯一一个不涉及到prototype的继承。
+<ul>
+<li>优点：父类的引用属性不会被共享且子类构建实例时可以向父类传递参数。</li>
+<li>缺点：父类的方法不能复用，子类实例的方法每次都是单独创建的。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">SuperType.call(SubType);<br></code></pre></td></tr></table></figure>
+<ul>
+<li>组合继承：原型式继承和构造函数继承的组合，兼具了二者的优点。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">SuperType</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">this</span>.name = <span class="hljs-string">&#x27;parent&#x27;</span>;<br>    <span class="hljs-built_in">this</span>.arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];<br>&#125;<br><br>SuperType.prototype.say = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123; <br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;this is parent&#x27;</span>)<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">SubType</span>(<span class="hljs-params"></span>) </span>&#123;<br>    SuperType.call(<span class="hljs-built_in">this</span>) <span class="hljs-comment">// 第二次调用SuperType</span><br>&#125;<br><br>SubType.prototype = <span class="hljs-keyword">new</span> SuperType() <span class="hljs-comment">// 第一次调用SuperType</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li>原型式继承：原型式继承使用一个空对象作为代理，本质上是对参数对象的一个浅复制。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">object</span>(<span class="hljs-params">o</span>)</span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">F</span>(<span class="hljs-params"></span>)</span>&#123;&#125;<br>  F.prototype = o;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> F();<br>&#125;<br><br><span class="hljs-keyword">var</span> person = &#123;<br>    name: <span class="hljs-string">&quot;Nicholas&quot;</span>,<br>    friends: [<span class="hljs-string">&quot;Shelby&quot;</span>, <span class="hljs-string">&quot;Court&quot;</span>, <span class="hljs-string">&quot;Van&quot;</span>]<br>&#125;;<br><br><span class="hljs-keyword">var</span> anotherPerson = object(person);<br>anotherPerson.name = <span class="hljs-string">&quot;Greg&quot;</span>;<br>anotherPerson.friends.push(<span class="hljs-string">&quot;Rob&quot;</span>);<br><br><span class="hljs-keyword">var</span> yetAnotherPerson = object(person);<br>yetAnotherPerson.name = <span class="hljs-string">&quot;Linda&quot;</span>;<br>yetAnotherPerson.friends.push(<span class="hljs-string">&quot;Barbie&quot;</span>);<br>alert(person.friends);   <span class="hljs-comment">//&quot;Shelby,Court,Van,Rob,Barbie&quot;</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li>寄生式继承：使用原型式继承获得一个目标对象的浅复制，然后增强这个浅复制的能力。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createAnother</span>(<span class="hljs-params">original</span>)</span>&#123; <br>    <span class="hljs-keyword">var</span> clone=object(original);    <span class="hljs-comment">//通过调用函数创建一个新对象</span><br>    clone.sayHi = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;      <span class="hljs-comment">//以某种方式来增强这个对象</span><br>        alert(<span class="hljs-string">&quot;hi&quot;</span>);<br>    &#125;;<br>    <span class="hljs-keyword">return</span> clone;                  <span class="hljs-comment">//返回这个对象</span><br>&#125;<br><br><span class="hljs-keyword">var</span> person = &#123;<br>    name: <span class="hljs-string">&quot;Nicholas&quot;</span>,<br>    friends: [<span class="hljs-string">&quot;Shelby&quot;</span>, <span class="hljs-string">&quot;Court&quot;</span>, <span class="hljs-string">&quot;Van&quot;</span>]<br>&#125;;<br><br><span class="hljs-keyword">var</span> anotherPerson = createAnother(person);<br>anotherPerson.sayHi(); <span class="hljs-comment">//&quot;hi&quot;</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li>寄生组合继承：解决组合继承会两次调用父类的构造函数造成浪费的缺点。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">inheritPrototype</span>(<span class="hljs-params">subType, superType</span>)</span>&#123;<br>    <span class="hljs-keyword">var</span> prototype = object(superType.prototype); <span class="hljs-comment">// 创建了父类原型的浅复制</span><br>    prototype.constructor = subType;             <span class="hljs-comment">// 修正原型的构造函数</span><br>    subType.prototype = prototype;               <span class="hljs-comment">// 将子类的原型替换为这个原型</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">SuperType</span>(<span class="hljs-params">name</span>)</span>&#123;<br>    <span class="hljs-built_in">this</span>.name = name;<br>    <span class="hljs-built_in">this</span>.colors = [<span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;blue&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>];<br>&#125;<br><br>SuperType.prototype.sayName = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>    alert(<span class="hljs-built_in">this</span>.name);<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">SubType</span>(<span class="hljs-params">name, age</span>)</span>&#123;<br>    SuperType.call(<span class="hljs-built_in">this</span>, name);<br>    <span class="hljs-built_in">this</span>.age = age;<br>&#125;<br><span class="hljs-comment">// 核心：因为是对父类原型的复制，所以不包含父类的构造函数，也就不会调用两次父类的构造函数造成浪费</span><br>inheritPrototype(SubType, SuperType);<br>SubType.prototype.sayAge = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>    alert(<span class="hljs-built_in">this</span>.age);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="javascript-应用开发框架"><a class="markdownIt-Anchor" href="#javascript-应用开发框架"></a> JavaScript 应用开发框架</h1>
+<h2 id="1-vuejs-的原理和应用"><a class="markdownIt-Anchor" href="#1-vuejs-的原理和应用"></a> 1. Vue.js 的原理和应用</h2>
+<p><img src="https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com//20210319181028.png" srcset="/img/loading.gif" lazyload alt="a6054cb4746ac78184b75cd07b35fb75" /></p>
+<h1 id="javascript-常用功能实现"><a class="markdownIt-Anchor" href="#javascript-常用功能实现"></a> JavaScript 常用功能实现</h1>
+<h2 id="深拷贝"><a class="markdownIt-Anchor" href="#深拷贝"></a> 深拷贝</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deepClone</span>(<span class="hljs-params">obj</span>) </span>&#123;<br>  <span class="hljs-keyword">var</span> newObj = obj <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span> ? [] : &#123;&#125;;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i <span class="hljs-keyword">in</span> obj) &#123;<br>    newObj[i] = <span class="hljs-keyword">typeof</span> obj[i] === <span class="hljs-string">&quot;object&quot;</span> ? deepClone(obj[i]) : obj[i];<br>  &#125;<br>  <span class="hljs-keyword">return</span> newObj;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="实现-bind-方法"><a class="markdownIt-Anchor" href="#实现-bind-方法"></a> 实现 bind 方法</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">Function</span>.prototype.bind = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">obj</span>) </span>&#123;<br>    <span class="hljs-keyword">const</span> args = <span class="hljs-built_in">Array</span>.prototype.slice.call(<span class="hljs-built_in">arguments</span>, <span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">const</span> fn = <span class="hljs-built_in">this</span>;<br><br>    <span class="hljs-keyword">let</span> F = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;&#125;;<br>    <span class="hljs-keyword">let</span> bound = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-keyword">const</span> params = <span class="hljs-built_in">Array</span>.prototype.slice.call(<span class="hljs-built_in">arguments</span>);<br>        fn.apply(obj, args.concat(params));<br>    &#125;;<br>    F.prototype = fn.prototype;<br>    bound.prototype = <span class="hljs-keyword">new</span> F();<br>    <span class="hljs-keyword">return</span> bound;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h2 id="使用-promise-封装-ajax"><a class="markdownIt-Anchor" href="#使用-promise-封装-ajax"></a> 使用 Promise 封装 ajax</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ajax</span>(<span class="hljs-params">method, url, params</span>) </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>        <span class="hljs-comment">// 创建XMLHttpRequest对象</span><br>        <span class="hljs-keyword">const</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();<br>        <span class="hljs-comment">// 状态改变时的回调</span><br>        xhr.onreadystatechange = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>            <span class="hljs-comment">// readyState为4的时候已接收完毕</span><br>            <span class="hljs-keyword">if</span> (xhr.readyState === <span class="hljs-number">4</span>) &#123;<br>                <span class="hljs-comment">// 状态码200表示成功</span><br>                <span class="hljs-keyword">if</span> (xhr.status === <span class="hljs-number">200</span>) &#123;<br>                    resolve(xhr.responseText);<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    reject(xhr.status);<br>                &#125;<br>            &#125;<br>        &#125;;<br><br>        <span class="hljs-comment">// get</span><br>        <span class="hljs-keyword">if</span> (method === <span class="hljs-string">&#x27;get&#x27;</span> || method === <span class="hljs-string">&#x27;GET&#x27;</span>) &#123;<br>            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> params === <span class="hljs-string">&#x27;object&#x27;</span>) &#123;<br>                <span class="hljs-comment">// params拆解成字符串</span><br>                params = <span class="hljs-built_in">Object</span>.keys(params).map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">key</span>) </span>&#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-built_in">encodeURIComponent</span>(key) + <span class="hljs-string">&#x27;=&#x27;</span> + <span class="hljs-built_in">encodeURIComponent</span>(params[key]);<br>                &#125;).join(<span class="hljs-string">&#x27;&amp;&#x27;</span>);<br>            &#125;<br>            url = params ? url + <span class="hljs-string">&#x27;?&#x27;</span> + params : url;<br>            xhr.open(method, url, <span class="hljs-literal">true</span>);<br>            xhr.send();<br>        &#125;<br><br>        <span class="hljs-comment">//post</span><br>        <span class="hljs-keyword">if</span> (method === <span class="hljs-string">&#x27;post&#x27;</span> || method === <span class="hljs-string">&#x27;POST&#x27;</span>) &#123;<br>            xhr.open(method, url, <span class="hljs-literal">true</span>);<br>            xhr.setRequestHeader(<span class="hljs-string">&quot;Content-type&quot;</span>, <span class="hljs-string">&quot;application/json; charset=utf-8&quot;</span>);<br>            xhr.send(<span class="hljs-built_in">JSON</span>.stringify(params));<br>        &#125;<br>    &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="尾递归优化"><a class="markdownIt-Anchor" href="#尾递归优化"></a> 尾递归优化</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 蹦床函数</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">trampoline</span>(<span class="hljs-params">f</span>) </span>&#123;<br>  <span class="hljs-keyword">while</span> (f &amp;&amp; f <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Function</span>) &#123;<br>    f = f();<br>  &#125;<br>  <span class="hljs-keyword">return</span> f;<br>&#125;<br><br><span class="hljs-comment">// 尾递归优化</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tco</span>(<span class="hljs-params">f</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> value;<br>  <span class="hljs-keyword">let</span> active = <span class="hljs-literal">false</span>;<br>  <span class="hljs-keyword">let</span> accumulated = [];<br><br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accumulator</span>(<span class="hljs-params"></span>) </span>&#123;<br>    accumulated.push(<span class="hljs-built_in">arguments</span>);<br>    <span class="hljs-keyword">if</span> (!active) &#123;<br>      active = <span class="hljs-literal">true</span>;<br>      <span class="hljs-keyword">while</span> (accumulated.length) &#123;<br>        value = f.apply(<span class="hljs-built_in">this</span>, accumulated.shift());<br>      &#125;<br>      active = <span class="hljs-literal">false</span>;<br>      <span class="hljs-keyword">return</span> value;<br>    &#125;<br>  &#125;;<br>&#125;<br><br><span class="hljs-keyword">var</span> sum = tco(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x, y</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (y &gt; <span class="hljs-number">0</span>) &#123;<br>    <span class="hljs-keyword">return</span> sum(x + <span class="hljs-number">1</span>, y - <span class="hljs-number">1</span>)<br>  &#125;<br>  <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">return</span> x<br>  &#125;<br>&#125;);<br><br>sum(<span class="hljs-number">1</span>, <span class="hljs-number">100000</span>) <span class="hljs-comment">// 100001</span><br></code></pre></td></tr></table></figure>
+<h2 id="实现一个简单的-promise"><a class="markdownIt-Anchor" href="#实现一个简单的-promise"></a> 实现一个简单的 Promise</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myPromise</span>(<span class="hljs-params">constructor</span>)</span>&#123;<br>    <span class="hljs-keyword">let</span> self=<span class="hljs-built_in">this</span>;<br>    self.status=<span class="hljs-string">&quot;pending&quot;</span> <span class="hljs-comment">//定义状态改变前的初始状态</span><br>    self.value=<span class="hljs-literal">undefined</span>;<span class="hljs-comment">//定义状态为resolved的时候的状态</span><br>    self.reason=<span class="hljs-literal">undefined</span>;<span class="hljs-comment">//定义状态为rejected的时候的状态</span><br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">resolve</span>(<span class="hljs-params">value</span>)</span>&#123;<br>        <span class="hljs-comment">//两个===&quot;pending&quot;，保证了状态的改变是不可逆的</span><br>       <span class="hljs-keyword">if</span>(self.status===<span class="hljs-string">&quot;pending&quot;</span>)&#123;<br>          self.value=value;<br>          self.status=<span class="hljs-string">&quot;resolved&quot;</span>;<br>       &#125;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reject</span>(<span class="hljs-params">reason</span>)</span>&#123;<br>        <span class="hljs-comment">//两个===&quot;pending&quot;，保证了状态的改变是不可逆的</span><br>       <span class="hljs-keyword">if</span>(self.status===<span class="hljs-string">&quot;pending&quot;</span>)&#123;<br>          self.reason=reason;<br>          self.status=<span class="hljs-string">&quot;rejected&quot;</span>;<br>       &#125;<br>    &#125;<br>    <span class="hljs-comment">//捕获构造异常</span><br>    <span class="hljs-keyword">try</span>&#123;<br>       <span class="hljs-title">constructor</span>(<span class="hljs-params">resolve,reject</span>);<br>    &#125;<span class="hljs-keyword">catch</span>(e)&#123;<br>       reject(e);<br>    &#125;<br>&#125;<br><br>myPromise.prototype.then=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">onFullfilled,onRejected</span>)</span>&#123;<br>   <span class="hljs-keyword">let</span> self=<span class="hljs-built_in">this</span>;<br>   <span class="hljs-keyword">switch</span>(self.status)&#123;<br>      <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;resolved&quot;</span>:<br>        onFullfilled(self.value);<br>        <span class="hljs-keyword">break</span>;<br>      <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;rejected&quot;</span>:<br>        onRejected(self.reason);<br>        <span class="hljs-keyword">break</span>;<br>      <span class="hljs-keyword">default</span>:       <br>   &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/03/18/%E6%96%87%E8%BF%9C%E7%9F%A5%E8%A1%8C%E7%AC%94%E8%AF%95%E9%A2%98/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">文远知行前端笔试题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/12/03/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86%E9%97%AE%E9%A2%98/">
+                        <span class="hidden-mobile">二叉树的遍历问题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.lazyComments('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "3thvlRFEaPVQpJJtlrogRwP8-gzGzoHsz",
+          app_key: "QueqTwpRD1mNqEskFmbaAdx1",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
