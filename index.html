@@ -192,6 +192,61 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/06/13/ES6%E7%9A%84import%E5%92%8Cexport/" target="_self">
+          <img src="https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com/javascript.jpg" srcset="/img/loading.gif" lazyload alt="ES6 的 import 和 export">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/06/13/ES6%E7%9A%84import%E5%92%8Cexport/">ES6 的 import 和 export</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/06/13/ES6%E7%9A%84import%E5%92%8Cexport/">
+          
+          
+            
+          
+           import 基本语法
+1234567891011121314151617181920212223242526272829// 默认导入，即导入 export default 中的模块import defaultExport from &quot;module-name&quot;;// 通过一个别名 name 导入所有模块import * as name from &quot;module-n
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-06-13 04:56" pubdate>
+              2021-06-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/ES6/">ES6</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2021/03/18/%E6%96%87%E8%BF%9C%E7%9F%A5%E8%A1%8C%E7%AC%94%E8%AF%95%E9%A2%98/" target="_self">
           <img src="https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com/exam.jpg" srcset="/img/loading.gif" lazyload alt="文远知行前端笔试题">
         </a>
@@ -254,26 +309,30 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/03/10/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" target="_self">
-          <img src="https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com//20210329152634.jpg" srcset="/img/loading.gif" lazyload alt="前端面试学习与总结">
+        <a href="/2021/03/10/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%BB%E7%BB%93/" target="_self">
+          <img src="https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com//20210329152634.jpg" srcset="/img/loading.gif" lazyload alt="前端知识体系总结">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/03/10/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">前端面试学习与总结</a>
+        <a href="/2021/03/10/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%BB%E7%BB%93/">前端知识体系总结</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/03/10/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
+        <a href="/2021/03/10/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E6%80%BB%E7%BB%93/">
           
           
             
           
-           网络基础知识
- 1. HTTP
-HTTP(Hypertext Transfer Protocol)，超文本传输协议（应用层），是互联网上应用最为广泛的一种网络协议。HTTP 是一个客户端（用户）和服务端（网站）之间请求和响应的标准，用于从服务器传输超媒体文档到本地浏览器（用户代理）。HTTP 的连接很简单，是无连接（限制每次连接只处理一个请求）无状态（不保存请求和响应之间的通信状态）的，底层使用
+           网络基础
+ 1. TCP 连接的建立和释放
+ TCP 建立连接（三次握手）
+服务器保持监听状态，客户端主动发起连接，收到服务器响应后建立连接，服务器收到客户端连接请求后进一步确认客户端可连接，收到客户端响应后建立连接，此时客户端服务端双方都已确认各自可收发。（最后一次握手的作用：防止已经失效的连接请求报文突然又传送到了服务器，从而产生错误）
+
+ TCP连接释放（四次挥手）
+客户端主动发起连接释放
         </a>
       </p>
 
@@ -299,6 +358,8 @@ HTTP(Hypertext Transfer Protocol)，超文本传输协议（应用层），是�
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+            
+              <a href="/tags/%E7%9F%A5%E8%AF%86%E6%A1%86%E6%9E%B6/">知识框架</a>
             
           </div>
         
@@ -714,61 +775,6 @@ npm-script 即利用 nodejs 实现的脚本命令，在 package.json 的 scripts
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2019/09/30/Sublime%E8%AF%A6%E7%BB%86%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0/" target="_self">
-          <img src="https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com/sublime-text.jpg" srcset="/img/loading.gif" lazyload alt="Sublime详细配置笔记">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2019/09/30/Sublime%E8%AF%A6%E7%BB%86%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0/">Sublime详细配置笔记</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2019/09/30/Sublime%E8%AF%A6%E7%BB%86%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0/">
-          
-          
-            
-          
-           为什么要用 Sublime Text
-有人也许会有疑问，为什么不用 Dreamweaver、WebStrom、Visual Studio 这些大型 IDE？功能齐全又好用，为什么要用 Sublime Text 呢？
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-09-30 01:25" pubdate>
-              2019-09-30
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%95%88%E7%8E%87/">效率</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8/">编辑器</a>
             
           </div>
         
