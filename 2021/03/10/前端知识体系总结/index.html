@@ -25,10 +25,10 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com//20210329152634.jpg">
 <meta property="article:published_time" content="2021-03-10T08:44:32.597Z">
-<meta property="article:modified_time" content="2021-05-05T04:53:05.085Z">
+<meta property="article:modified_time" content="2022-08-16T14:41:41.569Z">
 <meta property="article:author" content="NickHopps">
-<meta property="article:tag" content="面试">
-<meta property="article:tag" content="知识框架">
+<meta property="article:tag" content="面试必备">
+<meta property="article:tag" content="知识体系">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com//20210329152634.jpg">
   
@@ -212,7 +212,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      undefined 字
+      39k 字
     </span>
   
 
@@ -221,7 +221,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      NaN 分钟
+      328 分钟
     </span>
   
 
@@ -723,7 +723,7 @@
 </ul>
 <h4 id="node-环境下的事件循环"><a class="markdownIt-Anchor" href="#node-环境下的事件循环"></a> Node 环境下的事件循环</h4>
 <p>在 node 中，事件循环表现出的状态与浏览器中大致相同。不同的是 node 中有一套自己的模型。node 中事件循环的实现是依靠的 libuv 引擎。我们知道 node 选择 chrome v8 引擎作为 JS 解释器，v8 引擎将 JS 代码分析后去调用对应的 node  api，而这些 api 最后则由 libuv 引擎驱动，执行对应的任务，并把不同的事件放在不同的队列中等待主线程执行。因此实际上 node 中的事件循环存在于 libuv 引擎中。</p>
-<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs smali">   ┌───────────────────────┐<br>┌─&gt;│        timers         │<br>│  └──────────┬────────────┘<br>│  ┌──────────┴────────────┐<br>│  │     I/O callbacks     │<br>│  └──────────┬────────────┘<br>│  ┌──────────┴────────────┐<br>│  │     idle, prepare     │<br>│  └──────────┬────────────┘      ┌───────────────┐<br>│  ┌──────────┴────────────┐      │   incoming:   │<br>│  │         poll          │&lt;--connections---     │<br>│  └──────────┬────────────┘      │   data, etc.  │<br>│  ┌──────────┴────────────┐      └───────────────┘<br>│  │       <span class="hljs-built_in"> check </span>         │<br>│  └──────────┬────────────┘<br>│  ┌──────────┴────────────┐<br>└──┤    close callbacks    │<br>   └───────────────────────┘<br></code></pre></td></tr></table></figure>
+<figure class="highlight smali"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><pre><code class="hljs smali">   ┌───────────────────────┐<br>┌─&gt;│        timers         │<br>│  └──────────┬────────────┘<br>│  ┌──────────┴────────────┐<br>│  │     I/O callbacks     │<br>│  └──────────┬────────────┘<br>│  ┌──────────┴────────────┐<br>│  │     idle, prepare     │<br>│  └──────────┬────────────┘      ┌───────────────┐<br>│  ┌──────────┴────────────┐      │   incoming:   │<br>│  │         poll          │&lt;--connections---     │<br>│  └──────────┬────────────┘      │   data, etc.  │<br>│  ┌──────────┴────────────┐      └───────────────┘<br>│  │       <span class="hljs-built_in"> check </span>         │<br>│  └──────────┬────────────┘<br>│  ┌──────────┴────────────┐<br>└──┤    close callbacks    │<br>   └───────────────────────┘<br></code></pre></td></tr></table></figure>
 <p>这些阶段大致的功能如下：</p>
 <ul>
 <li>timers：这个阶段执行定时器队列中的回调如 <code>setTimeout()</code> 和 <code>setInterval()</code>；</li>
@@ -920,9 +920,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87/">面试必备</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E7%9F%A5%E8%AF%86%E6%A1%86%E6%9E%B6/">知识框架</a>
+                      <a class="hover-with-bg" href="/tags/%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/">知识体系</a>
                     
                   </div>
                 

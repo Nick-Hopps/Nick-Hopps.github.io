@@ -18,21 +18,21 @@
   
     <meta name="description" content="设计模式（design pattern）是对软件设计中普遍存在的各种问题，所提出的解决方案。是某种场景下解决问题的范式，因此掌握设计模式对于一个 Programmer 来说非常重要。本文介绍了几种常见的设计模式。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript 常用设计模式">
+<meta property="og:title" content="JavaScript常用设计模式">
 <meta property="og:url" content="https://infiniture.cn/2019/09/30/JavaScript%E5%B8%B8%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="Nick&#39;s Blog">
 <meta property="og:description" content="设计模式（design pattern）是对软件设计中普遍存在的各种问题，所提出的解决方案。是某种场景下解决问题的范式，因此掌握设计模式对于一个 Programmer 来说非常重要。本文介绍了几种常见的设计模式。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com/javascript.jpg">
 <meta property="article:published_time" content="2019-09-29T17:25:16.882Z">
-<meta property="article:modified_time" content="2020-01-13T13:53:04.940Z">
+<meta property="article:modified_time" content="2022-08-16T14:38:38.679Z">
 <meta property="article:author" content="NickHopps">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com/javascript.jpg">
   
   
-  <title>JavaScript 常用设计模式 - Nick&#39;s Blog</title>
+  <title>JavaScript常用设计模式 - Nick&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -190,7 +190,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="JavaScript 常用设计模式">
+            <span class="h2" id="subtitle" title="JavaScript常用设计模式">
               
             </span>
 
@@ -211,7 +211,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      undefined 字
+      11k 字
     </span>
   
 
@@ -220,7 +220,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      NaN 分钟
+      96 分钟
     </span>
   
 
@@ -249,13 +249,13 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">JavaScript 常用设计模式</h1>
+            <h1 style="display: none">JavaScript常用设计模式</h1>
             
             <div class="markdown-body">
               <p>设计模式（design pattern）是对软件设计中普遍存在的各种问题，所提出的解决方案。是某种场景下解决问题的范式，因此掌握设计模式对于一个 Programmer 来说非常重要。本文介绍了几种常见的设计模式。</p>
 <span id="more"></span>
 <h1 id="原型模式the-prototype-pattern"><a class="markdownIt-Anchor" href="#原型模式the-prototype-pattern"></a> 原型模式（The Prototype Pattern）</h1>
-<figure class="highlight javascript"><figcaption><span>&#123;.line-numbers&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 最直接的方法，使用 &quot;hasOwnProperty&quot; 时无法遍历原型对象</span><br><span class="hljs-keyword">var</span> vehicle = &#123;<br>  getModel: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&quot;The model of this vehicle is..&quot;</span> + <span class="hljs-built_in">this</span>.model );<br>  &#125;<br>&#125;;<br><br><span class="hljs-keyword">var</span> car = <span class="hljs-built_in">Object</span>.create(vehicle, &#123;<br>  <span class="hljs-string">&quot;id&quot;</span>: &#123;<br>    value: MY_GLOBAL.nextId(),<br>    enumerable: <span class="hljs-literal">true</span><br>  &#125;,<br>  <span class="hljs-string">&quot;model&quot;</span>: &#123;<br>    value: <span class="hljs-string">&quot;Ford&quot;</span>,<br>    enumerable: <span class="hljs-literal">true</span><br>  &#125;<br>&#125;);<br><br><span class="hljs-comment">// 优化后的方法</span><br><span class="hljs-keyword">var</span> beget = (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">F</span>(<span class="hljs-params"></span>) </span>&#123;&#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">proto</span>) </span>&#123;<br>    F.prototype = proto;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> F();<br>  &#125;;<br>&#125;)();<br><br><span class="hljs-keyword">var</span> car = beget(vehicle);<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><figcaption><span>&#123;.line-numbers&#125;</span></figcaption><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></div></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 最直接的方法，使用 &quot;hasOwnProperty&quot; 时无法遍历原型对象</span><br><span class="hljs-keyword">var</span> vehicle = &#123;<br>  getModel: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&quot;The model of this vehicle is..&quot;</span> + <span class="hljs-built_in">this</span>.model );<br>  &#125;<br>&#125;;<br><br><span class="hljs-keyword">var</span> car = <span class="hljs-built_in">Object</span>.create(vehicle, &#123;<br>  <span class="hljs-string">&quot;id&quot;</span>: &#123;<br>    value: MY_GLOBAL.nextId(),<br>    enumerable: <span class="hljs-literal">true</span><br>  &#125;,<br>  <span class="hljs-string">&quot;model&quot;</span>: &#123;<br>    value: <span class="hljs-string">&quot;Ford&quot;</span>,<br>    enumerable: <span class="hljs-literal">true</span><br>  &#125;<br>&#125;);<br><br><span class="hljs-comment">// 优化后的方法</span><br><span class="hljs-keyword">var</span> beget = (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">F</span>(<span class="hljs-params"></span>) </span>&#123;&#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">proto</span>) </span>&#123;<br>    F.prototype = proto;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> F();<br>  &#125;;<br>&#125;)();<br><br><span class="hljs-keyword">var</span> car = beget(vehicle);<br></code></pre></td></tr></table></figure>
 <ul>
 <li>
 <p>优点：</p>

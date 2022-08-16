@@ -18,21 +18,21 @@
   
     <meta name="description" content="import 基本语法 1234567891011121314151617181920212223242526272829&#x2F;&#x2F; 默认导入，即导入 export default 中的模块import defaultExport from &quot;module-name&quot;;&#x2F;&#x2F; 通过一个别名 name 导入所有模块import * as name from &quot;module-n">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ES6 的 import 和 export">
+<meta property="og:title" content="ES6的import和export">
 <meta property="og:url" content="https://infiniture.cn/2021/06/13/ES6%E7%9A%84import%E5%92%8Cexport/index.html">
 <meta property="og:site_name" content="Nick&#39;s Blog">
 <meta property="og:description" content="import 基本语法 1234567891011121314151617181920212223242526272829&#x2F;&#x2F; 默认导入，即导入 export default 中的模块import defaultExport from &quot;module-name&quot;;&#x2F;&#x2F; 通过一个别名 name 导入所有模块import * as name from &quot;module-n">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com/javascript.jpg">
 <meta property="article:published_time" content="2021-06-12T20:56:54.799Z">
-<meta property="article:modified_time" content="2021-06-14T16:10:01.343Z">
+<meta property="article:modified_time" content="2022-08-16T14:38:33.669Z">
 <meta property="article:author" content="NickHopps">
 <meta property="article:tag" content="ES6">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com/javascript.jpg">
   
   
-  <title>ES6 的 import 和 export - Nick&#39;s Blog</title>
+  <title>ES6的import和export - Nick&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -190,7 +190,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="ES6 的 import 和 export">
+            <span class="h2" id="subtitle" title="ES6的import和export">
               
             </span>
 
@@ -211,7 +211,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      undefined 字
+      1.3k 字
     </span>
   
 
@@ -220,7 +220,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      NaN 分钟
+      11 分钟
     </span>
   
 
@@ -249,11 +249,11 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">ES6 的 import 和 export</h1>
+            <h1 style="display: none">ES6的import和export</h1>
             
             <div class="markdown-body">
               <h2 id="import-基本语法"><a class="markdownIt-Anchor" href="#import-基本语法"></a> <code>import</code> 基本语法</h2>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 默认导入，即导入 export default 中的模块</span><br><span class="hljs-keyword">import</span> defaultExport <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;module-name&quot;</span>;<br><br><span class="hljs-comment">// 通过一个别名 name 导入所有模块</span><br><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> name <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;module-name&quot;</span>;<br><br><span class="hljs-comment">// 导入指定模块</span><br><span class="hljs-keyword">import</span> &#123; export1 &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;module-name&quot;</span>;<br><br><span class="hljs-comment">// 导入指定模块，并设置别名</span><br><span class="hljs-keyword">import</span> &#123; export1 <span class="hljs-keyword">as</span> alias1 &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;module-name&quot;</span>;<br><br><span class="hljs-comment">// 导入多个模块</span><br><span class="hljs-keyword">import</span> &#123; export1 , export2 &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;module-name&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; export1 , export2 <span class="hljs-keyword">as</span> alias2 , [...] &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;module-name&quot;</span>;<br><br><span class="hljs-comment">// 导入默认模块和其他模块</span><br><span class="hljs-keyword">import</span> defaultExport, * <span class="hljs-keyword">as</span> name <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;module-name&quot;</span>;<br><span class="hljs-keyword">import</span> defaultExport, &#123; export1 [ , [...] ] &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;module-name&quot;</span>;<br><br><span class="hljs-comment">// 仅执行模块中的代码，不导入任何模块</span><br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;module-name&quot;</span>;<br><span class="hljs-comment">// 也适用于动态导入：</span><br>(<span class="hljs-keyword">async</span> () =&gt; &#123;<br>  <span class="hljs-keyword">if</span> (somethingIsTrue) &#123;<br>    <span class="hljs-comment">// import module for side effects</span><br>    <span class="hljs-keyword">await</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;/modules/my-module.js&#x27;</span>);<br>  &#125;<br>&#125;)();<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 默认导入，即导入 export default 中的模块</span><br><span class="hljs-keyword">import</span> defaultExport <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;module-name&quot;</span>;<br><br><span class="hljs-comment">// 通过一个别名 name 导入所有模块</span><br><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> name <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;module-name&quot;</span>;<br><br><span class="hljs-comment">// 导入指定模块</span><br><span class="hljs-keyword">import</span> &#123; export1 &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;module-name&quot;</span>;<br><br><span class="hljs-comment">// 导入指定模块，并设置别名</span><br><span class="hljs-keyword">import</span> &#123; export1 <span class="hljs-keyword">as</span> alias1 &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;module-name&quot;</span>;<br><br><span class="hljs-comment">// 导入多个模块</span><br><span class="hljs-keyword">import</span> &#123; export1 , export2 &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;module-name&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; export1 , export2 <span class="hljs-keyword">as</span> alias2 , [...] &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;module-name&quot;</span>;<br><br><span class="hljs-comment">// 导入默认模块和其他模块</span><br><span class="hljs-keyword">import</span> defaultExport, * <span class="hljs-keyword">as</span> name <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;module-name&quot;</span>;<br><span class="hljs-keyword">import</span> defaultExport, &#123; export1 [ , [...] ] &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;module-name&quot;</span>;<br><br><span class="hljs-comment">// 仅执行模块中的代码，不导入任何模块</span><br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;module-name&quot;</span>;<br><span class="hljs-comment">// 也适用于动态导入：</span><br>(<span class="hljs-keyword">async</span> () =&gt; &#123;<br>  <span class="hljs-keyword">if</span> (somethingIsTrue) &#123;<br>    <span class="hljs-comment">// import module for side effects</span><br>    <span class="hljs-keyword">await</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;/modules/my-module.js&#x27;</span>);<br>  &#125;<br>&#125;)();<br></code></pre></td></tr></table></figure>
 <h2 id="export-基本语法"><a class="markdownIt-Anchor" href="#export-基本语法"></a> <code>export</code> 基本语法</h2>
 <p>ESM 模块导出有两种类型：具名导出和默认导出。每个模块可以有多个具名导出，但只能有一个默认导出。两种类型导出的基础语法如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 具名导出</span><br><br><span class="hljs-comment">// 导出已声明功能</span><br><span class="hljs-keyword">export</span> &#123; myFunction, myVariable &#125;;<br><span class="hljs-comment">// 导出单个功能 (可使用 var, let, const, function, class)</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> myVariable = ...;<br><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myFunction</span>(<span class="hljs-params"></span>) </span>&#123; ... &#125;;<br>                              <br><span class="hljs-comment">// 默认导出</span><br><br><span class="hljs-comment">// 以默认导出形式导出已声明功能</span><br><span class="hljs-keyword">export</span> &#123; myFunction <span class="hljs-keyword">as</span> <span class="hljs-keyword">default</span> &#125;;<br><span class="hljs-comment">// 以默认导出形式导出单个功能</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123; ... &#125;<br><br><span class="hljs-comment">// 聚合导出（Aggregating）</span><br><span class="hljs-keyword">export</span> &#123; <span class="hljs-keyword">default</span> <span class="hljs-keyword">as</span> function1, function2 &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;bar.js&#x27;</span>;<br></code></pre></td></tr></table></figure>

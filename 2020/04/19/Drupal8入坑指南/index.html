@@ -18,21 +18,21 @@
   
     <meta name="description" content="为什么选择 Drupal？ 我们先来看看3大开源 CMS 系统各自的主要特点： WordPress：  用户友好，非常适合非开发人员 免费和付费的插件、主题数量庞大 拥有最活跃的社区（WP市场占有率60%以上） 优秀的本地化支持  Joomla：  注重用户友好的同时，兼顾了自定义开发，平衡了 WP 和 Drupal 各自的优点 优秀的本地化支持  Drupal：  强大的自定义开发支持，非常适">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Drupal8 入坑指南">
+<meta property="og:title" content="Drupal8入坑指南">
 <meta property="og:url" content="https://infiniture.cn/2020/04/19/Drupal8%E5%85%A5%E5%9D%91%E6%8C%87%E5%8D%97/index.html">
 <meta property="og:site_name" content="Nick&#39;s Blog">
 <meta property="og:description" content="为什么选择 Drupal？ 我们先来看看3大开源 CMS 系统各自的主要特点： WordPress：  用户友好，非常适合非开发人员 免费和付费的插件、主题数量庞大 拥有最活跃的社区（WP市场占有率60%以上） 优秀的本地化支持  Joomla：  注重用户友好的同时，兼顾了自定义开发，平衡了 WP 和 Drupal 各自的优点 优秀的本地化支持  Drupal：  强大的自定义开发支持，非常适">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com/drupal8.jpg">
 <meta property="article:published_time" content="2020-04-19T05:56:41.291Z">
-<meta property="article:modified_time" content="2020-10-09T03:09:25.137Z">
+<meta property="article:modified_time" content="2022-08-16T14:38:25.292Z">
 <meta property="article:author" content="NickHopps">
 <meta property="article:tag" content="CMS">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://hexo-1251051422.cos.ap-guangzhou.myqcloud.com/drupal8.jpg">
   
   
-  <title>Drupal8 入坑指南 - Nick&#39;s Blog</title>
+  <title>Drupal8入坑指南 - Nick&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -190,7 +190,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Drupal8 入坑指南">
+            <span class="h2" id="subtitle" title="Drupal8入坑指南">
               
             </span>
 
@@ -211,7 +211,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      undefined 字
+      19k 字
     </span>
   
 
@@ -220,7 +220,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      NaN 分钟
+      158 分钟
     </span>
   
 
@@ -249,7 +249,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Drupal8 入坑指南</h1>
+            <h1 style="display: none">Drupal8入坑指南</h1>
             
             <div class="markdown-body">
               <h1 id="为什么选择-drupal"><a class="markdownIt-Anchor" href="#为什么选择-drupal"></a> 为什么选择 Drupal？</h1>
@@ -283,7 +283,7 @@
 <p>关于开发环境一类的搭建就不多赘述了，能选择 Drupal 进行开发的，基本也都是老手了。唯一需要注意的一点是，注意 php 和 mysql 的配置，比如我是 Windows 平台上用 XAMPP 搭建的环境，就参考 <a target="_blank" rel="noopener" href="https://www.drupal.org/docs/develop/local-server-setup/windows-development-environment/quick-install-drupal-with-xampp-on">Quick install Drupal with XAMPP on Windows</a> 进行配置。</p>
 <h2 id="drupal-的目录结构"><a class="markdownIt-Anchor" href="#drupal-的目录结构"></a> Drupal 的目录结构</h2>
 <p>了解一个项目最好的出发点，就是先了解它的组成结构。前面也说到了，通过 Composer 直接安装的项目，Drupal 的主要文件位于 “/web” 目录下，而 “/vendor” 目录下则是这个 Drupal 发行版所需的各种依赖。Drupal 的主要文件结构如下所示：</p>
-<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs axapta">├── core                              <span class="hljs-meta"># Drupal 核心部分</span><br>│   ├── assets<br>│   ├── config<br>│   ├── includes<br>│   ├── lib                           <span class="hljs-meta"># Drupal 核心依赖库</span><br>│   ├── misc<br>│   ├── modules                       <span class="hljs-meta"># Drupal 核心模块</span><br>│   ├── profiles                      <span class="hljs-meta"># Drupal 安装配置</span><br>│   ├── scripts                       <span class="hljs-meta"># Drupal CLI脚本</span><br>│   ├── tests<br>│   ├── themes                        <span class="hljs-meta"># Drupal 默认主题</span><br>│   └── ...<br>├── modules                           <span class="hljs-meta"># Contributed/Custom 模块</span><br>├── profiles                          <span class="hljs-meta"># Distribution/Custom 安装配置</span><br>├── sites<br>│   ├── <span class="hljs-literal">default</span><br>│   │ 	├── files                     <span class="hljs-meta"># 站点文件（包含图片、CSS、JS、导出的配置、语言等）</span><br>│   │ 	├── <span class="hljs-literal">default</span>.services.yml<br>│   │ 	├── <span class="hljs-literal">default</span>.settings.php<br>│   │ 	└── settings.php              <span class="hljs-meta"># 站点设置文件（数据库、代理、PHP设置等）</span><br>│   └── ...<br>├── themes                            <span class="hljs-meta">#	Contributed/Custom 主题</span><br>├── INSTALL.txt<br>├── README.txt<br>├── autoload.php                      <span class="hljs-meta"># 加载依赖</span><br>├── example.gitignore<br>├── <span class="hljs-keyword">index</span>.php                         <span class="hljs-meta"># 主入口文件</span><br>├── robots.txt<br>├── update.php                        <span class="hljs-meta"># 数据库升级</span><br>└── web.config<br></code></pre></td></tr></table></figure>
+<figure class="highlight axapta"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></div></td><td class="code"><pre><code class="hljs axapta">├── core                              <span class="hljs-meta"># Drupal 核心部分</span><br>│   ├── assets<br>│   ├── config<br>│   ├── includes<br>│   ├── lib                           <span class="hljs-meta"># Drupal 核心依赖库</span><br>│   ├── misc<br>│   ├── modules                       <span class="hljs-meta"># Drupal 核心模块</span><br>│   ├── profiles                      <span class="hljs-meta"># Drupal 安装配置</span><br>│   ├── scripts                       <span class="hljs-meta"># Drupal CLI脚本</span><br>│   ├── tests<br>│   ├── themes                        <span class="hljs-meta"># Drupal 默认主题</span><br>│   └── ...<br>├── modules                           <span class="hljs-meta"># Contributed/Custom 模块</span><br>├── profiles                          <span class="hljs-meta"># Distribution/Custom 安装配置</span><br>├── sites<br>│   ├── <span class="hljs-literal">default</span><br>│   │ 	├── files                     <span class="hljs-meta"># 站点文件（包含图片、CSS、JS、导出的配置、语言等）</span><br>│   │ 	├── <span class="hljs-literal">default</span>.services.yml<br>│   │ 	├── <span class="hljs-literal">default</span>.settings.php<br>│   │ 	└── settings.php              <span class="hljs-meta"># 站点设置文件（数据库、代理、PHP设置等）</span><br>│   └── ...<br>├── themes                            <span class="hljs-meta">#	Contributed/Custom 主题</span><br>├── INSTALL.txt<br>├── README.txt<br>├── autoload.php                      <span class="hljs-meta"># 加载依赖</span><br>├── example.gitignore<br>├── <span class="hljs-keyword">index</span>.php                         <span class="hljs-meta"># 主入口文件</span><br>├── robots.txt<br>├── update.php                        <span class="hljs-meta"># 数据库升级</span><br>└── web.config<br></code></pre></td></tr></table></figure>
 <h2 id="安装-drupal"><a class="markdownIt-Anchor" href="#安装-drupal"></a> 安装 Drupal</h2>
 <p>建议使用 Composer 安装 Drupal，以便随后可以通过 Composer 管理整个项目。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 如果下载太慢可以尝试替换阿里云的镜像源或者使用代理</span><br>composer create-project drupal/recommended-project my_site_dir<br><br><span class="hljs-meta">#</span><span class="bash"> 安装完本体后别忘了把 drush 也装上（drush 是 drupal 的命令行工具）</span><br>composer require drush/drush<br></code></pre></td></tr></table></figure>

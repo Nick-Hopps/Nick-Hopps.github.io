@@ -19,7 +19,7 @@
     <meta name="description" content="gulp&#x2F;grunt 等任务流工具开发的脚手架比较复杂，往往要写很多的配置脚本，比较适合正式的项目使用，但是有时候我们又只想搭建一个简单的本地开发预览功能，这个时候用上面说到的任务流工具来开发就显得大材小用了。 npm-script 即利用 nodejs 实现的脚本命令，在 package.json 的 scripts 对象中描述。我们可以用 npm-script 快速实现一个具有浏览器同步更新、">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用npm-script快速构建实时预览项目">
-<meta property="og:url" content="https://infiniture.cn/2020/03/03/%E4%BD%BF%E7%94%A8%20npm-script%E5%BF%AB%E9%80%9F%E6%9E%84%E5%BB%BA%E5%AE%9E%E6%97%B6%E9%A2%84%E8%A7%88%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:url" content="https://infiniture.cn/2020/03/03/%E4%BD%BF%E7%94%A8npm-script%E5%BF%AB%E9%80%9F%E6%9E%84%E5%BB%BA%E5%AE%9E%E6%97%B6%E9%A2%84%E8%A7%88%E9%A1%B9%E7%9B%AE/index.html">
 <meta property="og:site_name" content="Nick&#39;s Blog">
 <meta property="og:description" content="gulp&#x2F;grunt 等任务流工具开发的脚手架比较复杂，往往要写很多的配置脚本，比较适合正式的项目使用，但是有时候我们又只想搭建一个简单的本地开发预览功能，这个时候用上面说到的任务流工具来开发就显得大材小用了。 npm-script 即利用 nodejs 实现的脚本命令，在 package.json 的 scripts 对象中描述。我们可以用 npm-script 快速实现一个具有浏览器同步更新、">
 <meta property="og:locale" content="zh_CN">
@@ -212,7 +212,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      undefined 字
+      1.5k 字
     </span>
   
 
@@ -221,7 +221,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      NaN 分钟
+      13 分钟
     </span>
   
 
@@ -256,7 +256,7 @@
               <p>gulp/grunt 等任务流工具开发的脚手架比较复杂，往往要写很多的配置脚本，比较适合正式的项目使用，但是有时候我们又只想搭建一个简单的本地开发预览功能，这个时候用上面说到的任务流工具来开发就显得大材小用了。</p>
 <p>npm-script 即利用 nodejs 实现的脚本命令，在 package.json 的 scripts 对象中描述。我们可以用 npm-script 快速实现一个具有浏览器同步更新、监控项目文件更改功能的 Demo，而仅仅只需要修改 package.json，不需要编写额外的配置。</p>
 <p>以下面这个 package.json 为例，这个 Demo 的目录结构为：</p>
-<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs txt">sass_test/<br>  -- dist<br>  -- src<br>  -- package.json<br></code></pre></td></tr></table></figure>
+<figure class="highlight txt"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><pre><code class="hljs txt">sass_test/<br>  -- dist<br>  -- src<br>  -- package.json<br></code></pre></td></tr></table></figure>
 <p>我需要它完成的功能主要有三个：</p>
 <ol>
 <li>
